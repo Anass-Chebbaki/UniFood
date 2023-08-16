@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         if (!isLoggedIn) {
             // Utente non registrato o non ha effettuato l'accesso
-            //dio maialino
+            //dio maialino e pure stronzetto
             val loginIntent = Intent(this, LoginActivity::class.java)
             startActivity(loginIntent)
             finish()
