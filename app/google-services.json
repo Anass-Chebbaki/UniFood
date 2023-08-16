@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "325643352397",
+    "project_id": "unifood-89f3d",
+    "storage_bucket": "unifood-89f3d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:325643352397:android:ffd270edf5f9a4184f9f04",
+        "android_client_info": {
+          "package_name": "com.example.unifood_definitivo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "325643352397-9kttkluc3bgne8ol7b8q3u4ntq023k7u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMCJeN0lNCVUkMobN4rg8J3XaxTMKxe9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "325643352397-9kttkluc3bgne8ol7b8q3u4ntq023k7u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
