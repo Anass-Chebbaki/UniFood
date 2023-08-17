@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/register_v2"
     tools:context="com.example.loginsignupauth.SignupActivity">
 
     <LinearLayout
@@ -14,29 +14,31 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="320dp"
+            android:layout_marginTop="405dp"
             android:orientation="vertical"
             android:padding="20dp">
 
             <EditText
                 android:id="@+id/signup_email"
-                android:layout_width="350dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="30dp"
+                android:layout_width="324dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/white_border"
                 android:drawableLeft="@drawable/emaild"
                 android:drawablePadding="8dp"
                 android:hint="Email"
                 android:padding="8dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
 
             <EditText
                 android:id="@+id/signup_password"
-                android:layout_width="350dp"
-                android:layout_height="60dp"
+                android:layout_width="324dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/white_border"
                 android:drawableLeft="@drawable/ic_password"
@@ -44,35 +46,43 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="8dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+
 
             <EditText
                 android:id="@+id/signup_confirm"
-                android:layout_width="350dp"
-                android:layout_height="60dp"
+                android:layout_width="324dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="24dp"
                 android:background="@drawable/white_border"
+                android:drawableLeft="@drawable/ic_password"
                 android:drawablePadding="8dp"
                 android:hint="Confirm Password"
-                android:drawableLeft="@drawable/ic_password"
                 android:inputType="textPassword"
                 android:padding="8dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF" />
-
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/signup_button"
-                android:layout_width="350dp"
-                android:layout_height="70dp"
-                android:layout_marginTop="30dp"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="24dp"
                 android:text="Sign Up"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 app:backgroundTint="@color/red"
                 app:cornerRadius="30dp"
-                app:strokeColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/signup_confirm"
+                app:strokeColor="@color/black"
                 app:strokeWidth="2dp" />
 
             <TextView
@@ -82,9 +92,10 @@
                 android:layout_gravity="center"
 
                 android:padding="4dp"
-                android:text="Already an user? Login"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:text="Sei già registrato? Accedi"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
 
         </LinearLayout>
 

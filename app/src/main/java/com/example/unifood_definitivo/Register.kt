@@ -3,7 +3,10 @@ package com.example.loginsignupauth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.SpannableString
+import android.widget.TextView
 import android.widget.Toast
+import com.example.unifood_definitivo.R
 
 import com.example.unifood_definitivo.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth

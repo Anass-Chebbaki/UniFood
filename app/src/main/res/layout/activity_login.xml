@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login"
+    android:background="@drawable/login_v2"
     tools:context="com.example.loginsignupauth.SignupActivity">
 
     <EditText
@@ -13,7 +13,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="192dp"
+        android:layout_marginBottom="188dp"
         android:background="@drawable/white_border"
         android:drawableLeft="@drawable/emaild"
         android:drawablePadding="8dp"
@@ -71,7 +71,7 @@
         android:layout_marginTop="10dp"
         android:text="Not yet registered? Signup"
         android:textColor="@color/black"
-        android:textSize="12sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
