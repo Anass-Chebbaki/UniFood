@@ -27,7 +27,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //supportActionBar?.hide()
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.loginButton.setOnClickListener {
@@ -35,20 +34,26 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.loginPassword.text.toString()
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
-
-                firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
+                firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { loginTask ->
+                    if (loginTask.isSuccessful) {
+                        val user = firebaseAuth.currentUser
+                        if (user != null && user.isEmailVerified) {
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                            finish() // Optional: Close the login activity
+                        } else {
+                            Toast.makeText(this, "Verifica prima l'indirizzo e-mail.", Toast.LENGTH_SHORT).show()
+                        }
                     } else {
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Errore durante il login.", Toast.LENGTH_SHORT).show()
                     }
                 }
             } else {
-                Toast.makeText(this,"Le caselle non possono essere vuote", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Inserisci l'indirizzo e-mail e la password.", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
     fun openSignupActivity(view: View) {
         val intent = Intent(this, SignupActivity::class.java)
         startActivity(intent)
