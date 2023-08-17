@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AlertDialog
 
 import com.example.unifood_definitivo.R
 import com.example.unifood_definitivo.databinding.ActivityLoginBinding
+
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
@@ -46,5 +48,9 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this,"Le caselle non possono essere vuote", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    fun openSignupActivity(view: View) {
+        val intent = Intent(this, SignupActivity::class.java)
+        startActivity(intent)
     }
 }
