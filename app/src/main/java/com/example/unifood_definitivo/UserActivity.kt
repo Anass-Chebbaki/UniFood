@@ -6,7 +6,7 @@ import android.content.Intent
 import com.example.unifood_definitivo.R
 import com.google.firebase.auth.FirebaseAuth
 
-class MainActivity : AppCompatActivity() {
+class UserActivity : AppCompatActivity() {
 
     private lateinit var firebaseAuth: FirebaseAuth
 
