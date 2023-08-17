@@ -17,7 +17,7 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        //supportActionBar?.hide()
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.signupButton.setOnClickListener{
@@ -37,10 +37,10 @@ class SignupActivity : AppCompatActivity() {
                         }
                     }
                 } else {
-                    Toast.makeText(this, "Password does not matched", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Le password non corrispondono", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "Fields cannot be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Le caselle non possono essere vuote", Toast.LENGTH_SHORT).show()
             }
         }
         binding.loginRedirectText.setOnClickListener {
