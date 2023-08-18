@@ -12,7 +12,6 @@ import com.example.unifood_definitivo.databinding.ActivityRegisterBinding
 
 
 import com.google.firebase.auth.FirebaseAuth
-
 class SignupActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
@@ -26,6 +25,7 @@ class SignupActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.signupButton.setOnClickListener {
+            val nome = binding.signupName.text.toString()
             val email = binding.signupEmail.text.toString()
             val password = binding.signupPassword.text.toString()
             val confirmPassword = binding.signupConfirm.text.toString()
