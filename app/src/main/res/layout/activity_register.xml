@@ -6,10 +6,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/register_v2"
-    tools:context="com.example.loginsignupauth.SignupActivity">
+    android:background="@color/red"
+    tools:context="com.example.loginsignupauth.UserActivity">
 
 
+    <EditText
+        android:id="@+id/signup_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="35dp"
+        android:background="@drawable/white_border"
+        android:drawableLeft="@drawable/ic_name"
+        android:drawablePadding="8dp"
+        android:hint="Nome"
+        android:padding="8dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/signup_surname"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:background="@drawable/white_border"
+        android:drawableLeft="@drawable/ic_name"
+        android:drawablePadding="8dp"
+        android:hint="Cognome"
+        android:padding="8dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/signup_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_name"
+        app:layout_constraintVertical_bias="0.666" />
 
     <EditText
         android:id="@+id/signup_email"
@@ -17,7 +55,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="35dp"
         android:layout_marginEnd="35dp"
-        android:layout_marginBottom="245dp"
+        android:layout_marginBottom="292dp"
         android:background="@drawable/white_border"
         android:drawableLeft="@drawable/emaild"
         android:drawablePadding="8dp"
@@ -25,7 +63,7 @@
         android:padding="8dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/signup_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
@@ -35,8 +73,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="35dp"
+        android:layout_marginBottom="212dp"
         android:background="@drawable/white_border"
         android:drawableLeft="@drawable/ic_password"
         android:drawablePadding="8dp"
@@ -45,18 +83,18 @@
         android:padding="8dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/signup_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signup_email" />
-
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/signup_confirm"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="35dp"
+        android:layout_marginBottom="128dp"
         android:background="@drawable/white_border"
         android:drawableLeft="@drawable/ic_password"
         android:drawablePadding="8dp"
@@ -65,25 +103,28 @@
         android:padding="8dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/signup_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signup_password" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signup_button"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="24dp"
         android:text="registrati"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:backgroundTint="@color/red"
         app:cornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signup_confirm"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.825"
         app:strokeColor="@color/black"
         app:strokeWidth="2dp" />
 
@@ -103,6 +144,28 @@
         app:layout_constraintTop_toBottomOf="@id/signup_button"
         app:layout_constraintVertical_bias="0.0" />
 
+    <EditText
+        android:id="@+id/signup_initial_balance"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="35dp"
+        android:background="@drawable/white_border"
+        android:hint="Saldo Iniziale"
+        android:inputType="numberDecimal"
+        android:drawableLeft="@drawable/ic_wallet"
+        android:drawablePadding="8dp"
+        android:padding="8dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/signup_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_confirm"
+        app:layout_constraintVertical_bias="0.308" />
+
     <TextView
         android:id="@+id/acceditext"
         android:layout_width="wrap_content"
@@ -110,7 +173,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:text=" Accedi"
-        android:textColor="@color/red"
+        android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -120,7 +183,5 @@
         app:layout_constraintVertical_bias="0.0"
         android:clickable="true"
         android:onClick="openLoginActivity"
-        tools:ignore="OnClick" />/>
-
-
+        tools:ignore="OnClick" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,8 +8,9 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import com.example.unifood_definitivo.R
-
 import com.example.unifood_definitivo.databinding.ActivityRegisterBinding
+
+
 import com.google.firebase.auth.FirebaseAuth
 
 class SignupActivity : AppCompatActivity() {
@@ -74,3 +75,8 @@ class SignupActivity : AppCompatActivity() {
         startActivity(intent)
     }
 }
+
+//aggiungere modo per far si che ogni utente che viene creato tutte le sue info vengono scritte nel database
+//in modo da poter essere richiamate poi successivamente, cosi nella schermata dell'admin possiamo creare un tasto che ci
+//rimaanda a tutti gli utenti registrati.
+//Invece nella schemata dell'utente possiamo visualizzare in alto " Ciao + nome recuperato dal database"
