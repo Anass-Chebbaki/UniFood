@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/red"
+    android:background="@drawable/registrazione_v2"
     tools:context="com.example.loginsignupauth.UserActivity">
 
 
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="35dp"
         android:background="@drawable/white_border"
         android:drawableLeft="@drawable/ic_name"
@@ -34,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="35dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="35dp"
         android:background="@drawable/white_border"
         android:drawableLeft="@drawable/ic_name"
@@ -42,20 +43,18 @@
         android:padding="8dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/signup_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_name"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_name" />
 
     <EditText
         android:id="@+id/signup_email"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="35dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="35dp"
-        android:layout_marginBottom="292dp"
         android:background="@drawable/white_border"
         android:drawableLeft="@drawable/emaild"
         android:drawablePadding="8dp"
@@ -63,18 +62,18 @@
         android:padding="8dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/signup_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_surname" />
 
     <EditText
         android:id="@+id/signup_password"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="35dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="35dp"
-        android:layout_marginBottom="212dp"
         android:background="@drawable/white_border"
         android:drawableLeft="@drawable/ic_password"
         android:drawablePadding="8dp"
@@ -83,18 +82,18 @@
         android:padding="8dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/signup_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_email" />
 
     <EditText
         android:id="@+id/signup_confirm"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="35dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="35dp"
-        android:layout_marginBottom="128dp"
         android:background="@drawable/white_border"
         android:drawableLeft="@drawable/ic_password"
         android:drawablePadding="8dp"
@@ -103,10 +102,10 @@
         android:padding="8dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/signup_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_password" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signup_button"
@@ -114,6 +113,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="50dp"
         android:text="registrati"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -121,10 +121,7 @@
         app:cornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.825"
         app:strokeColor="@color/black"
         app:strokeWidth="2dp" />
 
@@ -149,22 +146,20 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="35dp"
         android:background="@drawable/white_border"
-        android:hint="Saldo Iniziale"
-        android:inputType="numberDecimal"
         android:drawableLeft="@drawable/ic_wallet"
         android:drawablePadding="8dp"
+        android:hint="Saldo Iniziale"
+        android:inputType="numberDecimal"
         android:padding="8dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/signup_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_confirm"
-        app:layout_constraintVertical_bias="0.308" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_confirm" />
 
     <TextView
         android:id="@+id/acceditext"
@@ -172,16 +167,16 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:onClick="openLoginActivity"
         android:text=" Accedi"
-        android:textColor="@color/black"
+        android:textColor="@color/red"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/loginRedirectText"
         app:layout_constraintTop_toBottomOf="@id/signup_button"
         app:layout_constraintVertical_bias="0.0"
-        android:clickable="true"
-        android:onClick="openLoginActivity"
         tools:ignore="OnClick" />
 </androidx.constraintlayout.widget.ConstraintLayout>
