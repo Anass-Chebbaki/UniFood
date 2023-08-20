@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">UniFood_Definitivo</string>
+    <string name="error">Errore</string>
+    <string name="email_already_registered_message">Sei già registrato. Accedi.</string>
+    <string name="ok">OK</string>
+    <string name="database_error_message">Si è verificato un errore del database. Riprova più tardi.</string>
+    <string name="password_too_short_message">La password deve essere di almeno 6 caratteri.</string>
+    <string name="passwords_not_matching_message">Le password non corrispondono.</string>
+    <string name="all_fields_required_message">Compila tutti i campi.</string>
 </resources>

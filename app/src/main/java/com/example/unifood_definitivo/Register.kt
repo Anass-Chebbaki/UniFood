@@ -3,80 +3,164 @@ package com.example.loginsignupauth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.SpannableString
-import android.view.View
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.unifood_definitivo.R
-import com.example.unifood_definitivo.databinding.ActivityRegisterBinding
+import com.example.unifood_definitivo.User
+import com.google.android.material.button.MaterialButton
 
 
 import com.google.firebase.auth.FirebaseAuth
-class SignupActivity : AppCompatActivity() {
+import com.google.firebase.database.*
+import com.google.firebase.database.core.view.View
+import java.util.*
 
-    private lateinit var binding: ActivityRegisterBinding
-    private lateinit var firebaseAuth: FirebaseAuth
+class SignupActivity : AppCompatActivity() {
+    private lateinit var nameEditText: EditText
+    private lateinit var surnameEditText: EditText
+    private lateinit var emailEditText: EditText
+    private lateinit var initialBalanceEditText: EditText
+    private lateinit var passwordEditText: EditText
+    private lateinit var confirmPasswordEditText: EditText
+    private lateinit var registerButton: MaterialButton
+    private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_register)
 
-        firebaseAuth = FirebaseAuth.getInstance()
+        nameEditText = findViewById(R.id.signup_name)
+        surnameEditText = findViewById(R.id.signup_surname)
+        emailEditText = findViewById(R.id.signup_email)
+        initialBalanceEditText = findViewById(R.id.signup_initial_balance)
+        passwordEditText = findViewById(R.id.signup_password)
+        confirmPasswordEditText = findViewById(R.id.signup_confirm)
 
-        binding.signupButton.setOnClickListener {
-            val nome = binding.signupName.text.toString()
-            val email = binding.signupEmail.text.toString()
-            val password = binding.signupPassword.text.toString()
-            val confirmPassword = binding.signupConfirm.text.toString()
+        registerButton = findViewById(R.id.signup_button)
 
-            if (email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()) {
-                if (password == confirmPassword) {
-                    firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { registrationTask ->
-                        if (registrationTask.isSuccessful) {
-                            val user = firebaseAuth.currentUser
-                            user?.sendEmailVerification()?.addOnCompleteListener { verificationTask ->
-                                if (verificationTask.isSuccessful) {
-                                    Toast.makeText(
-                                        this,
-                                        "E-mail di verifica inviata. Controlla la tua casella di posta.",
-                                        Toast.LENGTH_LONG
-                                    ).show()
-                                    val intent = Intent(this, LoginActivity::class.java)
-                                    startActivity(intent)
-                                } else {
-                                    Toast.makeText(
-                                        this,
-                                        "Errore nell'invio dell'e-mail di verifica.",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                            }
-                        } else {
-                            Toast.makeText(this, registrationTask.exception.toString(), Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                } else {
-                    Toast.makeText(this, "Le password non corrispondono", Toast.LENGTH_SHORT).show()
-                }
-            } else {
-                Toast.makeText(this, "Le caselle non possono essere vuote", Toast.LENGTH_SHORT).show()
+        database = FirebaseDatabase.getInstance("https://unifood-89f3d-default-rtdb.europe-west1.firebasedatabase.app/")
+            .getReference()
+
+        registerButton.setOnClickListener {
+            val name = nameEditText.text.toString()
+            val surname = surnameEditText.text.toString()
+            val email = emailEditText.text.toString()
+            val initialBalance = initialBalanceEditText.text.toString()
+            val password = passwordEditText.text.toString()
+            val confirmPassword = confirmPasswordEditText.text.toString()
+
+            if (name.isEmpty() || surname.isEmpty() || email.isEmpty() ||
+                initialBalance.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                // Mostra un messaggio di errore se almeno un campo è vuoto
+                Toast.makeText(this, "Compila tutti i campi prima di procedere", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+            if (password.length < 6) {
+                showPasswordTooShortDialog()
+                return@setOnClickListener
+            }
+
+            if (password != confirmPassword) {
+                showPasswordsNotMatchingDialog()
+                return@setOnClickListener
+            }
+
+            val id = generateRandomId(6)
+            val user = User(id, name, surname, email, initialBalance.toDouble(), password)
+
+            val emailQuery = database.child("Utenti").orderByChild("email").equalTo(email)
+            emailQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        showEmailAlreadyRegisteredDialog()
+                    } else {
+                        database.child("Utenti").child(id).setValue(user)
+                        redirectToLoginScreen()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    showDatabaseErrorDialog()
+                }
+            })
         }
 
-        binding.loginRedirectText.setOnClickListener {
-            val loginIntent = Intent(this, LoginActivity::class.java)
-            startActivity(loginIntent)
+        val accediText = findViewById<TextView>(R.id.acceditext)
+        accediText.setOnClickListener {
+            openLoginActivity()
         }
     }
 
-    fun openLoginActivity(view: View) {
+    private fun generateRandomId(length: Int): String {
+        val charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        return (1..length)
+            .map { charset.random() }
+            .joinToString("")
+    }
+
+    private fun showEmailAlreadyRegisteredDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.error)
+            .setMessage(R.string.email_already_registered_message)
+            .setPositiveButton(R.string.ok) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun showPasswordTooShortDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.error)
+            .setMessage(R.string.password_too_short_message)
+            .setPositiveButton(R.string.ok) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun showDatabaseErrorDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.error)
+            .setMessage(R.string.database_error_message)
+            .setPositiveButton(R.string.ok) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun redirectToLoginScreen() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish() // Opzionale: chiude l'attività corrente
+    }
+
+    private fun openLoginActivity() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
+
+    private fun showPasswordsNotMatchingDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.error)
+            .setMessage(R.string.passwords_not_matching_message)
+            .setPositiveButton(R.string.ok) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
 }
 
-//aggiungere modo per far si che ogni utente che viene creato tutte le sue info vengono scritte nel database
-//in modo da poter essere richiamate poi successivamente, cosi nella schermata dell'admin possiamo creare un tasto che ci
-//rimaanda a tutti gli utenti registrati.
-//Invece nella schemata dell'utente possiamo visualizzare in alto " Ciao + nome recuperato dal database"
+
+
+
+
+
+
+
+
+
+
+

@@ -4,4 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminActivity"/>
+    tools:context=".AdminActivity">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="87dp"
+        android:layout_height="94dp"
+        android:text="Pisello"
+        tools:layout_editor_absoluteX="162dp"
+        tools:layout_editor_absoluteY="136dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

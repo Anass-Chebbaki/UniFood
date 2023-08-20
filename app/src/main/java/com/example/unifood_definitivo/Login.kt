@@ -4,74 +4,111 @@ package com.example.loginsignupauth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.example.unifood_definitivo.AdminActivity
+import com.example.unifood_definitivo.R
+import com.example.unifood_definitivo.User
 
 
-import com.example.unifood_definitivo.databinding.ActivityLoginBinding
+
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLoginBinding
-    private lateinit var firebaseAuth: FirebaseAuth
+
+
+
+    private lateinit var emailEditText: EditText
+    private lateinit var passwordEditText: EditText
+    private lateinit var loginButton: Button
+    private lateinit var signupText: TextView
+
+    private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        firebaseAuth = FirebaseAuth.getInstance()
+        setContentView(R.layout.activity_login)
 
-        binding.loginButton.setOnClickListener {
-            val email = binding.loginEmail.text.toString()
-            val password = binding.loginPassword.text.toString()
+        emailEditText = findViewById(R.id.login_email)
+        passwordEditText = findViewById(R.id.login_password)
+        loginButton = findViewById(R.id.login_button)
+        signupText = findViewById(R.id.signuptext)
+
+        database = FirebaseDatabase.getInstance("https://unifood-89f3d-default-rtdb.europe-west1.firebasedatabase.app/")
+            .getReference("Utenti")
+
+        loginButton.setOnClickListener {
+            val email = emailEditText.text.toString()
+            val password = passwordEditText.text.toString()
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                firebaseAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener { loginTask ->
-                        if (loginTask.isSuccessful) {
-                            val user = firebaseAuth.currentUser
-                            if (user != null && user.isEmailVerified) {
-                                val isAdmin = checkAdminEmail(email)
-                                if (isAdmin) {
-                                    val adminIntent = Intent(this, AdminActivity::class.java)
-                                    startActivity(adminIntent)
-                                } else {
-                                    val userIntent = Intent(this, UserActivity::class.java)
-                                    startActivity(userIntent)
-                                }
-                                finish() // Optional: Close the login activity
-                            } else {
-                                Toast.makeText(
-                                    this,
-                                    "Verifica prima l'indirizzo e-mail.",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        } else {
-                            Toast.makeText(this, "Errore durante il login.", Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                    }
+                authenticateUser(email, password)
             } else {
-                Toast.makeText(
-                    this,
-                    "Inserisci l'indirizzo e-mail e la password.",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this, "Inserisci email e password", Toast.LENGTH_SHORT).show()
             }
         }
 
+        signupText.setOnClickListener {
+            openSignupActivity()
+        }
     }
-    fun openSignupActivity(view: View) {
+
+    private fun authenticateUser(email: String, password: String) {
+        val query = database.orderByChild("email").equalTo(email)
+
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    var isAuthenticated = false
+                    var isAdmin = false
+
+                    for (userSnapshot in snapshot.children) {
+                        val user = userSnapshot.getValue(User::class.java)
+                        if (user != null && user.password == password) {
+                            // Credenziali corrette
+                            isAuthenticated = true
+                            if (email == "unifood44@gmail.com" && password == "unifood") {
+                                isAdmin = true
+                            }
+                            break
+                        }
+                    }
+
+                    if (isAuthenticated) {
+                        if (isAdmin) {
+                            val intent = Intent(this@LoginActivity, AdminActivity::class.java)
+                            startActivity(intent)
+                        } else {
+                            // L'utente è autenticato, reindirizza all'activity successiva
+                            val intent = Intent(this@LoginActivity, UserActivity::class.java)
+                            startActivity(intent)
+                        }
+                        finish()
+                    } else {
+                        // Credenziali errate
+                        Toast.makeText(this@LoginActivity, "Credenziali errate", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    // Nessun utente trovato con quella email
+                    Toast.makeText(this@LoginActivity, "Nessun utente trovato con questa email", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@LoginActivity, "Errore nel database", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun openSignupActivity() {
         val intent = Intent(this, SignupActivity::class.java)
         startActivity(intent)
     }
-    fun checkAdminEmail(email: String): Boolean {
-        // Controlla se l'email è quella dell'amministratore
-        return email.equals("unifood44@gmail.com", ignoreCase = true)
-    }
-
 }
