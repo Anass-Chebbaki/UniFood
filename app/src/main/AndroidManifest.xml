@@ -17,7 +17,7 @@
             android:name=".AdminActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.loginsignupauth.UserActivity"
+            android:name="com.example.loginsignupauth.MainActivity"
             android:exported="false" />
         <activity
             android:name="com.example.loginsignupauth.LoginActivity"

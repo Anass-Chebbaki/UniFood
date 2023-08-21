@@ -5,8 +5,6 @@ import User
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -15,10 +13,6 @@ import com.example.unifood_definitivo.AdminActivity
 import com.example.unifood_definitivo.R
 
 
-
-
-
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class LoginActivity : AppCompatActivity() {
@@ -69,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
                     finish()
                     // L'utente è un amministratore, fai qualcosa qui se necessario
                 } else {
-                    val intent = Intent(this@LoginActivity, UserActivity::class.java)
+                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     intent.putExtra("user", user) // Passa l'oggetto User all'activity successiva
                     startActivity(intent)
                     finish()

@@ -4,17 +4,19 @@ import User
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
-import android.util.Log
 import android.widget.TextView
 import com.example.unifood_definitivo.R
 import com.google.firebase.auth.FirebaseAuth
 
-class UserActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
         //supportActionBar?.hide()
         firebaseAuth = FirebaseAuth.getInstance()
 
