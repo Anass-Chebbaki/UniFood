@@ -1,6 +1,7 @@
 package com.example.loginsignupauth
 
 
+import User
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,7 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.unifood_definitivo.AdminActivity
 import com.example.unifood_definitivo.R
-import com.example.unifood_definitivo.User
+
 
 
 
@@ -29,7 +30,6 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: Button
     private lateinit var signupText: TextView
-
     private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,48 +61,49 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun authenticateUser(email: String, password: String) {
+        getUserInformation(email, password) { user ->
+            if (user != null) {
+                if (email == "unifood44@gmail.com" && password == "unifood") {
+                    val adminIntent = Intent(this@LoginActivity, AdminActivity::class.java)
+                    startActivity(adminIntent)
+                    finish()
+                    // L'utente è un amministratore, fai qualcosa qui se necessario
+                } else {
+                    val intent = Intent(this@LoginActivity, UserActivity::class.java)
+                    intent.putExtra("user", user) // Passa l'oggetto User all'activity successiva
+                    startActivity(intent)
+                    finish()
+                }
+            } else {
+                Toast.makeText(this@LoginActivity, "Credenziali errate", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun getUserInformation(email: String, password: String, callback: (User?) -> Unit) {
         val query = database.orderByChild("email").equalTo(email)
 
         query.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    var isAuthenticated = false
-                    var isAdmin = false
+                    var user: User? = null
 
                     for (userSnapshot in snapshot.children) {
-                        val user = userSnapshot.getValue(User::class.java)
-                        if (user != null && user.password == password) {
-                            // Credenziali corrette
-                            isAuthenticated = true
-                            if (email == "unifood44@gmail.com" && password == "unifood") {
-                                isAdmin = true
-                            }
+                        val retrievedUser = userSnapshot.getValue(User::class.java)
+                        if (retrievedUser != null && retrievedUser.password == password) {
+                            user = retrievedUser
                             break
                         }
                     }
 
-                    if (isAuthenticated) {
-                        if (isAdmin) {
-                            val intent = Intent(this@LoginActivity, AdminActivity::class.java)
-                            startActivity(intent)
-                        } else {
-                            // L'utente è autenticato, reindirizza all'activity successiva
-                            val intent = Intent(this@LoginActivity, UserActivity::class.java)
-                            startActivity(intent)
-                        }
-                        finish()
-                    } else {
-                        // Credenziali errate
-                        Toast.makeText(this@LoginActivity, "Credenziali errate", Toast.LENGTH_SHORT).show()
-                    }
+                    callback(user)
                 } else {
-                    // Nessun utente trovato con quella email
-                    Toast.makeText(this@LoginActivity, "Nessun utente trovato con questa email", Toast.LENGTH_SHORT).show()
+                    callback(null)
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@LoginActivity, "Errore nel database", Toast.LENGTH_SHORT).show()
+                callback(null)
             }
         })
     }

@@ -1,5 +1,6 @@
 package com.example.loginsignupauth
 
+import User
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,14 +9,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.unifood_definitivo.R
-import com.example.unifood_definitivo.User
+
 import com.google.android.material.button.MaterialButton
 
 
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.database.core.view.View
-import java.util.*
 
 class SignupActivity : AppCompatActivity() {
     private lateinit var nameEditText: EditText
