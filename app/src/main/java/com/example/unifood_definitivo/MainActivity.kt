@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.widget.TextView
+import com.example.unifood_definitivo.Model.CiboData
 import com.example.unifood_definitivo.R
 import com.google.firebase.auth.FirebaseAuth
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
@@ -15,6 +17,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
 
 
         //supportActionBar?.hide()
@@ -47,7 +51,7 @@ class MainActivity : AppCompatActivity() {
             //con il codice di sopra posso stampare a console tutte le informazioni dell'utente che
             //ha appena fatto il login
             val welcomeTextView = findViewById<TextView>(R.id.textView)
-            welcomeTextView.text = "Ciao $userName"
+            welcomeTextView.text = "Ciao $userName!"
 
 
         } else {
