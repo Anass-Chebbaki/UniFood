@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unifood_definitivo.Model.CiboData
 import com.example.unifood_definitivo.databinding.CibiLayoutBinding
-
+//dddd
 class CiboAdapter(
     var c:Context, var cibiList: ArrayList<CiboData>
 ) :RecyclerView.Adapter<CiboAdapter.CibiViewHolder>()
