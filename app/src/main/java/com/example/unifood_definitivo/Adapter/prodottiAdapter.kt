@@ -38,7 +38,7 @@ class ProdottiAdapter(private var prodottiList: ArrayList<Prodotti>) :
         holder.binding.apply {
             tvNameItem.text = currentItem.nome_prodotto
             tvPriceItem.text = currentItem.prezzo.toString()
-            tvIdItem.text = currentItem.id
+            //tvIdItem.text = currentItem.id
 
             currentItem.imgUri?.let {
                 Picasso.get().load(it).into(imgItem)

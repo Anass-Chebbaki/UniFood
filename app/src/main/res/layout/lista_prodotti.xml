@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="10dp"
-    android:elevation="10dp"
+    android:layout_margin="0dp"
     android:backgroundTint="@color/white"
-    android:layout_margin="10dp">
+    android:elevation="10dp"
+    app:cardCornerRadius="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rv_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:padding="12dp">
+        android:backgroundTint="#C8C5C5"
+        android:padding="12sp">
 
         <TextView
             android:id="@+id/tvNameItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:gravity="center_vertical"
             android:text="name"
             android:textColor="@color/black"
-            android:textSize="28sp"
-            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
             app:layout_constraintStart_toEndOf="@+id/imgItem"
             app:layout_constraintTop_toTopOf="@+id/imgItem" />
 
@@ -32,33 +33,38 @@
             android:id="@+id/tvPriceItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
             android:text="prezzo"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textColor="@color/red"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/tvNameItem"
             app:layout_constraintTop_toBottomOf="@+id/tvNameItem" />
 
-        <TextView
-            android:id="@+id/tvIdItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="id"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/tvPriceItem"
-            app:layout_constraintTop_toBottomOf="@+id/tvPriceItem"
-            android:textStyle=""/>
 
         <ImageView
             android:id="@+id/imgItem"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPriceItem"
+            app:layout_constraintStart_toEndOf="@+id/tvPriceItem"
+            app:layout_constraintTop_toTopOf="@+id/tvPriceItem" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
