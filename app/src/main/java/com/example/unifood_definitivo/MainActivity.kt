@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.widget.TextView
-import com.example.unifood_definitivo.Model.CiboData
+
 import com.example.unifood_definitivo.R
 import com.google.firebase.auth.FirebaseAuth
 
