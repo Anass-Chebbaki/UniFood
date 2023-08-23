@@ -51,8 +51,7 @@ class ProdottiAdapter(private var prodottiList: ArrayList<Prodotti>) :
     }
 
     fun updateData(newData: List<Prodotti>) {
-        prodottiList.clear()
-        prodottiList.addAll(newData)
+        prodottiList = ArrayList(newData)
         notifyDataSetChanged()
     }
 }

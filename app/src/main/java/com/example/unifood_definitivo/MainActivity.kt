@@ -4,6 +4,7 @@ import com.example.unifood_definitivo.Model.User
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.util.Log
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -58,9 +59,15 @@ class MainActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val productList = ArrayList<Prodotti>()
                 for (productSnapshot in snapshot.children) {
-                    val product = productSnapshot.getValue(Prodotti::class.java)
+                    val id = productSnapshot.key // Recupera l'id
+                    val nomeProdotto = productSnapshot.child("nome_prodotto").getValue(String::class.java)
+                    val prezzo = productSnapshot.child("prezzo").getValue(Int::class.java)
+                    val imgUri = productSnapshot.child("imgUri").getValue(String::class.java)
+
+                    val product = Prodotti(id, nomeProdotto, prezzo, imgUri)
                     product?.let {
                         productList.add(it)
+                        Log.d("ProductData", "Id: $id, Nome: $nomeProdotto, Prezzo: $prezzo, Uri: $imgUri")
                     }
                 }
                 prodottiAdapter.updateData(productList)
