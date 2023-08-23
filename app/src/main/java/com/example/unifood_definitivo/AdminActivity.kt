@@ -14,7 +14,7 @@ class AdminActivity : AppCompatActivity() {
     private val userList: MutableList<User> = mutableListOf()
     private lateinit var userAdapter: ArrayAdapter<String>
     private var selectedUser: User? = null
-    //PORCA MADONNA
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
