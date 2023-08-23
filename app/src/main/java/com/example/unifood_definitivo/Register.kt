@@ -1,6 +1,6 @@
 package com.example.loginsignupauth
 
-import User
+import com.example.unifood_definitivo.Model.User
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

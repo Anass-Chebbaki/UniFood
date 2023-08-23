@@ -1,3 +1,5 @@
+package com.example.unifood_definitivo.Model
+
 import java.io.Serializable
 
 data class User(

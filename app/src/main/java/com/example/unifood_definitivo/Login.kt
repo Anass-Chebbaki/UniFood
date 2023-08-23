@@ -1,7 +1,7 @@
 package com.example.loginsignupauth
 
 
-import User
+import com.example.unifood_definitivo.Model.User
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -64,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
                     // L'utente è un amministratore, fai qualcosa qui se necessario
                 } else {
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    intent.putExtra("user", user) // Passa l'oggetto User all'activity successiva
+                    intent.putExtra("user", user) // Passa l'oggetto com.example.unifood_definitivo.Model.User all'activity successiva
                     startActivity(intent)
                     finish()
                 }

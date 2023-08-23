@@ -1,6 +1,6 @@
 package com.example.unifood_definitivo
 
-import User
+import com.example.unifood_definitivo.Model.User
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
