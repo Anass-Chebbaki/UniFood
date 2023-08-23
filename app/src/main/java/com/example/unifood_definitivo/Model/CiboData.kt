@@ -12,4 +12,4 @@ class CiboData {
         this.nomeCibo = nomeCat
         this.imgCibo = imgCat
     }
-} ///aaaaaa
+}
