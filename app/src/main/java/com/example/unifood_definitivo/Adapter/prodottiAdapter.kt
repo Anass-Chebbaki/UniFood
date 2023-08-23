@@ -10,20 +10,26 @@ import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unifood_definitivo.databinding.ListaProdottiBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 
 
-class prodottiAdapter(private  val prodottiList : java.util.ArrayList<Prodotti>) : RecyclerView.Adapter<prodottiAdapter.ViewHolder>() {
+class ProdottiAdapter(private val prodottiList: ArrayList<Prodotti>) :
+    RecyclerView.Adapter<ProdottiAdapter.ViewHolder>() {
 
-    class ViewHolder(val binding : ListaProdottiBinding) : RecyclerView.ViewHolder(binding.root) {
-
-    }
+    class ViewHolder(val binding: ListaProdottiBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
-        return  ViewHolder(ListaProdottiBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return ViewHolder(
+            ListaProdottiBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int {
@@ -32,26 +38,22 @@ class prodottiAdapter(private  val prodottiList : java.util.ArrayList<Prodotti>)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = prodottiList[position]
-        holder.apply {
-            binding.apply {
-                tvNameItem.text = currentItem.nome_prodotto
-                tvPriceItem.text = currentItem.prezzo
-                tvIdItem.text = currentItem.id
-                Picasso.get().load(currentItem.imgUri).into(imgItem)
+        val imgUri = currentItem.imgUri
 
+        holder.binding.apply {
+            tvNameItem.text = currentItem.nome_prodotto
+            tvPriceItem.text = currentItem.prezzo
+            tvIdItem.text = currentItem.id
 
-                /*rvContainer.setOnClickListener {
+            // Load the image using Picasso if imgUri is not null
+            imgUri?.let {
+                Picasso.get().load(imgUri).into(imgItem)
+            }
 
-                    val action = HomeFragmentDirections.actionHomeFragmentToUpdateFragment(
-                        currentItem.id.toString(),
-                        currentItem.name.toString(),
-                        currentItem.phoneNumber.toString(),
-                        currentItem.imgUri.toString()
-                    )
-                    findNavController(holder.itemView).navigate(action)*/
-                }
-
-                }
+            root.setOnClickListener {
+                // Handle the item click event here
             }
         }
+    }
+}
 
