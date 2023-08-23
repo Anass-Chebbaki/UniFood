@@ -17,19 +17,15 @@ import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 
 
-class ProdottiAdapter(private val prodottiList: ArrayList<Prodotti>) :
+
+class ProdottiAdapter(private var prodottiList: ArrayList<Prodotti>) :
     RecyclerView.Adapter<ProdottiAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ListaProdottiBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            ListaProdottiBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+        val binding = ListaProdottiBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -38,22 +34,26 @@ class ProdottiAdapter(private val prodottiList: ArrayList<Prodotti>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = prodottiList[position]
-        val imgUri = currentItem.imgUri
 
         holder.binding.apply {
             tvNameItem.text = currentItem.nome_prodotto
-            tvPriceItem.text = currentItem.prezzo
+            tvPriceItem.text = currentItem.prezzo.toString()
             tvIdItem.text = currentItem.id
 
-            // Load the image using Picasso if imgUri is not null
-            imgUri?.let {
-                Picasso.get().load(imgUri).into(imgItem)
+            currentItem.imgUri?.let {
+                Picasso.get().load(it).into(imgItem)
             }
 
             root.setOnClickListener {
-                // Handle the item click event here
+                // Gestisci l'evento di clic dell'elemento qui
             }
         }
+    }
+
+    fun updateData(newData: List<Prodotti>) {
+        prodottiList.clear()
+        prodottiList.addAll(newData)
+        notifyDataSetChanged()
     }
 }
 

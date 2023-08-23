@@ -6,7 +6,7 @@ data class Prodotti(
 
     val id: String? = null,
     val nome_prodotto: String? = null,
-    val prezzo: String? = null,
+    val prezzo: Int? = null,
     val imgUri: String? = null
 
 )
