@@ -5,9 +5,11 @@ import com.example.unifood_definitivo.Model.Prodotti
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.unifood_definitivo.R
 import com.example.unifood_definitivo.databinding.ListaProdottiBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.DataSnapshot
@@ -38,14 +40,18 @@ class ProdottiAdapter(private var prodottiList: ArrayList<Prodotti>) :
         holder.binding.apply {
             tvNameItem.text = currentItem.nome_prodotto
             tvPriceItem.text = currentItem.prezzo.toString()
-            //tvIdItem.text = currentItem.id
+
+            // Directly access the ingredientsView using findViewById
+            holder.itemView.findViewById<TextView>(R.id.ingredientsView).text = currentItem.ingredienti ?: "Ingredienti non disponibili"
+
+
 
             currentItem.imgUri?.let {
                 Picasso.get().load(it).into(imgItem)
             }
 
             root.setOnClickListener {
-                // Gestisci l'evento di clic dell'elemento qui
+                // Handle click event here
             }
         }
     }

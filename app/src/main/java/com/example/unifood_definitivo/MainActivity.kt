@@ -61,13 +61,14 @@ class MainActivity : AppCompatActivity() {
                 for (productSnapshot in snapshot.children) {
                     val id = productSnapshot.key // Recupera l'id
                     val nomeProdotto = productSnapshot.child("nome_prodotto").getValue(String::class.java)
-                    val prezzo = productSnapshot.child("prezzo").getValue(Int::class.java)
+                    val prezzo = productSnapshot.child("prezzo").getValue(Double::class.java)
                     val imgUri = productSnapshot.child("imgUri").getValue(String::class.java)
+                    val ingredienti=productSnapshot.child("ingredienti").getValue(String::class.java)
 
-                    val product = Prodotti(id, nomeProdotto, prezzo, imgUri)
+                    val product = Prodotti(id, nomeProdotto, prezzo, imgUri,ingredienti)
                     product?.let {
                         productList.add(it)
-                        Log.d("ProductData", "Id: $id, Nome: $nomeProdotto, Prezzo: $prezzo, Uri: $imgUri")
+                        Log.d("ProductData", "Id: $id, Nome: $nomeProdotto, Prezzo: $prezzo, Uri: $imgUri, Ingredienti: $ingredienti")
                     }
                 }
                 prodottiAdapter.updateData(productList)
