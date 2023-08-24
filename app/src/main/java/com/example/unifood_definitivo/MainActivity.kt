@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         // Inizializza l'istanza di FirebaseAuth
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -51,6 +52,10 @@ class MainActivity : AppCompatActivity() {
         prodottiAdapter = ProdottiAdapter(ArrayList())
         recyclerView.adapter = prodottiAdapter
 
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+
+
         // Inizializza il riferimento al database
         databaseReference = FirebaseDatabase.getInstance().getReference("Prodotti")
 
@@ -68,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                     val product = Prodotti(id, nomeProdotto, prezzo, imgUri,ingredienti)
                     product?.let {
                         productList.add(it)
-                        Log.d("ProductData", "Id: $id, Nome: $nomeProdotto, Prezzo: $prezzo, Uri: $imgUri, Ingredienti: $ingredienti")
+                        Log.d("ProductData", "Id: $id, Nome: $nomeProdotto, Prezzo: $prezzo, Uri: $imgUri")
                     }
                 }
                 prodottiAdapter.updateData(productList)
