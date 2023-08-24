@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         // Inizializza il riferimento al database
         databaseReference = FirebaseDatabase.getInstance().getReference("Prodotti")
 
+
         // Recupera i dati dei prodotti dal database
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

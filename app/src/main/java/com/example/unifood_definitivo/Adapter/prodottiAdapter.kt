@@ -41,6 +41,7 @@ class ProdottiAdapter(private var prodottiList: ArrayList<Prodotti>) :
             tvNameItem.text = currentItem.nome_prodotto
             tvPriceItem.text = currentItem.prezzo.toString()
 
+
             // Directly access the ingredientsView using findViewById
             //holder.itemView.findViewById<TextView>(R.id.ingredientsView).text = currentItem.ingredienti ?: "Ingredienti non disponibili"
 
