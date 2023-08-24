@@ -8,7 +8,9 @@ import android.util.Log
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.unifood_definitivo.Adapter.CategorieAdapter
 import com.example.unifood_definitivo.Adapter.ProdottiAdapter
+import com.example.unifood_definitivo.Model.Categorie
 import com.example.unifood_definitivo.Model.Prodotti
 
 import com.example.unifood_definitivo.R
@@ -19,12 +21,16 @@ import com.google.firebase.database.*
 class MainActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView1: RecyclerView
+    private lateinit var categorieAdapter:CategorieAdapter
     private lateinit var prodottiAdapter: ProdottiAdapter
     private lateinit var databaseReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
 
 
         // Inizializza l'istanza di FirebaseAuth
@@ -54,6 +60,16 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
+        val categories = listOf(
+            Categorie("Nome 1", R.drawable.cat_1, R.drawable.cat_background1)
+            // ... altre categorie...
+        )
+        categorieAdapter = CategorieAdapter(categories)
+        recyclerView1 = findViewById(R.id.recyclerView1)
+        recyclerView1.layoutManager = LinearLayoutManager(this)
+        recyclerView1.adapter = categorieAdapter
+
+        recyclerView1.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
 
         // Inizializza il riferimento al database
