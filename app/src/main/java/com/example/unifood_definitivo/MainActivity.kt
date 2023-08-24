@@ -61,8 +61,12 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         val categories = listOf(
-            Categorie("Nome 1", R.drawable.cat_1, R.drawable.cat_background1)
-            // ... altre categorie...
+            Categorie("Pizza", R.drawable.cat_1, R.drawable.cat_background1),
+            Categorie("Panini", R.drawable.cat_2, R.drawable.cat_background2),
+            Categorie("Insalate", R.drawable.cat_3,R.drawable.cat_background3),
+            Categorie("Bibite", R.drawable.cat_4,R.drawable.cat_background4),
+            Categorie("Dolci", R.drawable.cat_5,R.drawable.cat_background5)
+
         )
         categorieAdapter = CategorieAdapter(categories)
         recyclerView1 = findViewById(R.id.recyclerView1)
