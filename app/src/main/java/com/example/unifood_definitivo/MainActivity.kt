@@ -91,6 +91,7 @@ class MainActivity : AppCompatActivity() {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Prodotti")
 
+
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val productList = ArrayList<Prodotti>()
@@ -141,6 +142,10 @@ class MainActivity : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {}
         })
+
+
+
+
     }
     private fun filterProductsByCategory(category: String?) {
         val filteredProducts = if (category.isNullOrEmpty()) {

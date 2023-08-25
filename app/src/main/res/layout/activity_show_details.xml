@@ -4,40 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Show_details"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context="c">
 
     <ScrollView
+        android:id="@+id/scrollView3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/titletxt"
+                android:id="@+id/titleTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="title"
+                android:layout_marginTop="60dp"
+                android:text="Title"
+                android:textAlignment="center"
                 android:textColor="#373b54"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                tools:textAlignment="center" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/priceTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="$"
+                android:textStyle="bold"
                 android:textAlignment="center"
-                android:textColor="@color/red"
+                android:textColor="#ff5e00"
                 android:textSize="24sp" />
 
             <ImageView
-                android:id="@+id/picFood"
+                android:id="@+id/foodPic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/detail" />
@@ -52,10 +54,11 @@
                     android:id="@+id/minusBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     app:srcCompat="@drawable/minus" />
 
                 <TextView
-                    android:id="@+id/numberoOrderTxt"
+                    android:id="@+id/numberOrderTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -70,6 +73,7 @@
                     android:id="@+id/plusBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     app:srcCompat="@drawable/plus" />
             </LinearLayout>
 
@@ -78,25 +82,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="description"
+                android:text="Descrizione"
                 android:textColor="#686767"
+                android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 
     <TextView
-        android:id="@+id/addToCartBtn"
+        android:id="@+id/addToCardBtn"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_margin="16dp"
+        android:text="Aggiungi al carrello"
         android:background="@drawable/mini_redbutton"
-        android:elevation="3dp"
         android:gravity="center"
-        android:text="Add to Cart"
-        android:textColor="#ffff"
+        android:textColor="#ffffff"
         android:textSize="23sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
+        android:elevation="3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
