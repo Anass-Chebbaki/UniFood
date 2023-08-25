@@ -8,5 +8,6 @@ data class Prodotti(
     val nome_prodotto: String? = null,
     val prezzo: Double? = null,
     val imgUri: String? = null,
-    val ingredienti: String?=null
+    val ingredienti: String?=null,
+    val categoria_appartenenza: String?=null
 )

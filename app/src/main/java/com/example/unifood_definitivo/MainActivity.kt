@@ -20,9 +20,11 @@ import com.example.unifood_definitivo.Model.Prodotti
 import com.example.unifood_definitivo.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.getValue
 
 
 class MainActivity : AppCompatActivity() {
+    private var selectedCategory: String? = null
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerView1: RecyclerView
@@ -76,6 +78,20 @@ class MainActivity : AppCompatActivity() {
         recyclerView1 = findViewById(R.id.recyclerView1)
         recyclerView1.layoutManager = LinearLayoutManager(this)
         recyclerView1.adapter = categorieAdapter
+        categorieAdapter.setOnItemClickListener { selectedCategory ->
+            if (this.selectedCategory == selectedCategory) {
+                // Deseleziona la categoria
+                this.selectedCategory = null
+                // Aggiorna la RecyclerView dei prodotti con tutti i prodotti
+                prodottiAdapter.updateData(fullProductList)
+            } else {
+                // Seleziona la nuova categoria
+                this.selectedCategory = selectedCategory
+                // Filtra e aggiorna la RecyclerView dei prodotti
+                filterProductsByCategory(selectedCategory)
+            }
+        }
+
 
         recyclerView1.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
@@ -90,8 +106,9 @@ class MainActivity : AppCompatActivity() {
                     val prezzo = productSnapshot.child("prezzo").getValue(Double::class.java)
                     val imgUri = productSnapshot.child("imgUri").getValue(String::class.java)
                     val ingredienti = productSnapshot.child("ingredienti").getValue(String::class.java)
+                    val categoria_appartenenza=productSnapshot.child("categoria_appartenenza").getValue(String::class.java)
 
-                    val product = Prodotti(id, nomeProdotto, prezzo, imgUri, ingredienti)
+                    val product = Prodotti(id, nomeProdotto, prezzo, imgUri, ingredienti, categoria_appartenenza)
                     product?.let {
                         productList.add(it)
                     }
@@ -131,4 +148,13 @@ class MainActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {}
         })
     }
+    private fun filterProductsByCategory(category: String?) {
+        val filteredProducts = if (category.isNullOrEmpty()) {
+            fullProductList // Mostra tutti i prodotti se nessuna categoria è selezionata
+        } else {
+            fullProductList.filter { it.categoria_appartenenza == category }
+        }
+        prodottiAdapter.updateData(filteredProducts)
+    }
+
 }
