@@ -51,9 +51,9 @@ class MainActivity : AppCompatActivity() {
             val userId= user.id
             val welcomeTextView = findViewById<TextView>(R.id.textView)
             welcomeTextView.text = "Ciao $userName!"
-            Log.d("MainActivity", "################Username: $userName")
-            Log.d("MainActivity", "################User Email: $userEmail")
-            Log.d("MainActivity", "#################User Id: $userId")
+            Log.d("MainActivity", "Username: $userName")
+            Log.d("MainActivity", "User Email: $userEmail")
+            Log.d("MainActivity", "User Id: $userId")
         } else {
             Log.e("MainActivity", "#################User object not received from LoginActivity")
         }

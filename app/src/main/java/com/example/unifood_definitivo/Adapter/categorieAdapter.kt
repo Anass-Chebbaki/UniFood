@@ -12,7 +12,6 @@ import com.example.unifood_definitivo.R
 import com.example.unifood_definitivo.Model.Categorie
 
 class CategorieAdapter(private val categorie: List<Categorie>) : RecyclerView.Adapter<CategorieAdapter.ViewHolder>() {
-
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val catName: TextView = view.findViewById(R.id.categoryName)
         val productIcon: ImageView = view.findViewById(R.id.categoryPic)
