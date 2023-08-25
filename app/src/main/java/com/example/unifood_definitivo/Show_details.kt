@@ -31,8 +31,7 @@ class Show_details : AppCompatActivity() {
                 Picasso.get().load(it).into(productImageView)
             }
         } else {
-            // Handle the case where the product data is missing or invalid
-            // You might want to show an error message or return to the previous screen
+
         }
     }
 }
