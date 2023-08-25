@@ -47,8 +47,15 @@ class MainActivity : AppCompatActivity() {
         val user = intent.getSerializableExtra("user") as? User
         if (user != null) {
             val userName = user.name
+            val userEmail=user.email
+            val userId= user.id
             val welcomeTextView = findViewById<TextView>(R.id.textView)
             welcomeTextView.text = "Ciao $userName!"
+            Log.d("MainActivity", "################Username: $userName")
+            Log.d("MainActivity", "################User Email: $userEmail")
+            Log.d("MainActivity", "#################User Id: $userId")
+        } else {
+            Log.e("MainActivity", "#################User object not received from LoginActivity")
         }
 
         recyclerView = findViewById(R.id.recyclerView)
