@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var prodottiAdapter: ProdottiAdapter
     private lateinit var databaseReference: DatabaseReference
     private val fullProductList = ArrayList<Prodotti>()
+    //aaaa
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
