@@ -18,6 +18,7 @@ import com.example.unifood_definitivo.Model.Categorie
 import com.example.unifood_definitivo.Model.Prodotti
 
 import com.example.unifood_definitivo.R
+import com.example.unifood_definitivo.Show_details
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
@@ -58,6 +59,12 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         prodottiAdapter = ProdottiAdapter(ArrayList())
         recyclerView.adapter = prodottiAdapter
+        prodottiAdapter.onItemClick = { product ->
+            val intent = Intent(this@MainActivity, Show_details::class.java)
+            intent.putExtra("product", product)
+            startActivity(intent)
+        }
+
 
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 

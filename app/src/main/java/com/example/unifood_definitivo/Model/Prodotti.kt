@@ -10,4 +10,4 @@ data class Prodotti(
     val imgUri: String? = null,
     val ingredienti: String?=null,
     val categoria_appartenenza: String?=null
-)
+):java.io.Serializable

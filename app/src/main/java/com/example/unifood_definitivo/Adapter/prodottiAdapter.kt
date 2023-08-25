@@ -22,7 +22,7 @@ import com.squareup.picasso.Picasso
 
 class ProdottiAdapter(private var prodottiList: ArrayList<Prodotti>) :
     RecyclerView.Adapter<ProdottiAdapter.ViewHolder>() {
-
+    var onItemClick: ((Prodotti) -> Unit)? = null
     class ViewHolder(val binding: ListaProdottiBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -40,19 +40,16 @@ class ProdottiAdapter(private var prodottiList: ArrayList<Prodotti>) :
         holder.binding.apply {
             tvNameItem.text = currentItem.nome_prodotto
             tvPriceItem.text = currentItem.prezzo.toString()
-
-
+            tvIngredientsView.text=currentItem.ingredienti.toString()
             // Directly access the ingredientsView using findViewById
             //holder.itemView.findViewById<TextView>(R.id.ingredientsView).text = currentItem.ingredienti ?: "Ingredienti non disponibili"
-
-
 
             currentItem.imgUri?.let {
                 Picasso.get().load(it).into(imgItem)
             }
 
             root.setOnClickListener {
-                // Handle click event here
+                onItemClick?.invoke(currentItem)
             }
         }
     }
