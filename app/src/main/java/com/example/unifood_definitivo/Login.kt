@@ -58,11 +58,6 @@ class LoginActivity : AppCompatActivity() {
     private fun authenticateUser(email: String, password: String) {
         getUserInformation(email, password) { user ->
             if (user != null) {
-                Log.d("LoginActivity", "User data retrieved from the database:")
-                Log.d("LoginActivity", "Name: ${user.name}")
-                Log.d("LoginActivity", "Email: ${user.email}")
-                Log.d("LoginActivity", "ID: ${user.id}")
-
                 if (email == "unifood44@gmail.com" && password == "unifood") {
                     val adminIntent = Intent(this@LoginActivity, AdminActivity::class.java)
                     startActivity(adminIntent)
@@ -71,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
                 } else {
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     intent.putExtra("user", user)
-                    Log.d("LoginActivity", "Starting MainActivity with user data...")// Passa l'oggetto com.example.unifood_definitivo.Model.User all'activity successiva
+                    //Log.d("LoginActivity", "Starting MainActivity with user data...")// Passa l'oggetto com.example.unifood_definitivo.Model.User all'activity successiva
                     startActivity(intent)
                     finish()
                 }

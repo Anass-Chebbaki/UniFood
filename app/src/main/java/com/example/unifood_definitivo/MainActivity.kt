@@ -37,14 +37,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        firebaseAuth = FirebaseAuth.getInstance()
 
-        if (firebaseAuth.currentUser == null) {
-            val loginIntent = Intent(this, LoginActivity::class.java)
-            startActivity(loginIntent)
-            finish()
-            return
-        }
 
         val user = intent.getSerializableExtra("user") as? User
         if (user != null) {
