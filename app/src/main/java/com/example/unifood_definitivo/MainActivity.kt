@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+//commit a caso
 
         val user = intent.getSerializableExtra("user") as? User
         if (user != null) {
