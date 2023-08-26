@@ -59,7 +59,7 @@
                     app:srcCompat="@drawable/minus" />
 
                 <TextView
-                    android:id="@+id/numberOrderTxt"
+                    android:id="@+id/quantityTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -80,12 +80,12 @@
 
             <TextView
                 android:id="@+id/ingredientsTxt"
-                android:layout_width="match_parent"
+                android:layout_width="359dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:text="Descrizione"
                 android:textColor="#686767"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
