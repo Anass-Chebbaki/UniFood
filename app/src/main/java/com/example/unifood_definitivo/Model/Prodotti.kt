@@ -9,5 +9,6 @@ data class Prodotti(
     val prezzo: Double? = null,
     val imgUri: String? = null,
     val ingredienti: String?=null,
-    val categoria_appartenenza: String?=null
+    val categoria_appartenenza: String?=null,
+    val imgUri2: String?=null //seconda immagine piu grande 900x900
 ):java.io.Serializable

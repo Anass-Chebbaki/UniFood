@@ -22,16 +22,17 @@ class Show_details : AppCompatActivity() {
 
             productNameTextView.text = product.nome_prodotto
             productPriceTextView.text = product.prezzo.toString()
-            productDescriptionTextView.text=product.ingredienti
+            productDescriptionTextView.text=product.ingredienti.toString()
 
 
             // Load and display the image using Picasso or any other image loading library
             val productImageView = findViewById<ImageView>(R.id.foodPic)
-            product.imgUri?.let {
+            product.imgUri2?.let {
                 Picasso.get().load(it).into(productImageView)
             }
         } else {
-
+            // Handle the case where the product data is missing or invalid
+            // You might want to show an error message or return to the previous screen
         }
     }
 }

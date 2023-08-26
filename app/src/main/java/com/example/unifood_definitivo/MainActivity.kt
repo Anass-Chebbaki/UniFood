@@ -109,8 +109,8 @@ class MainActivity : AppCompatActivity() {
                     val imgUri = productSnapshot.child("imgUri").getValue(String::class.java)
                     val ingredienti = productSnapshot.child("ingredienti").getValue(String::class.java)
                     val categoria_appartenenza=productSnapshot.child("categoria_appartenenza").getValue(String::class.java)
-
-                    val product = Prodotti(id, nomeProdotto, prezzo, imgUri, ingredienti, categoria_appartenenza)
+                    val imgUri2 = productSnapshot.child("imgUri2").getValue(String::class.java)
+                    val product = Prodotti(id, nomeProdotto, prezzo, imgUri, ingredienti, categoria_appartenenza,imgUri2)
                     product?.let {
                         productList.add(it)
                     }
