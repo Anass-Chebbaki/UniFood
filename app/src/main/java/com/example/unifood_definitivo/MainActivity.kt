@@ -14,14 +14,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unifood_definitivo.Adapter.CategorieAdapter
 import com.example.unifood_definitivo.Adapter.ProdottiAdapter
+import com.example.unifood_definitivo.Cart_List
 import com.example.unifood_definitivo.Model.Categorie
 import com.example.unifood_definitivo.Model.Prodotti
 
 import com.example.unifood_definitivo.R
 import com.example.unifood_definitivo.Show_details
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.getValue
 
 
 class MainActivity : AppCompatActivity() {
@@ -124,7 +125,11 @@ class MainActivity : AppCompatActivity() {
                 // Handle error if needed
             }
         })
-
+        val cardBtn = findViewById<FloatingActionButton>(R.id.card_btn)
+        cardBtn.setOnClickListener {
+            val intent = Intent(this, Cart_List::class.java)
+            startActivity(intent)
+        }
         val searchEditText = findViewById<EditText>(R.id.editTextTextPersonName)
         val deleteBtn = findViewById<ImageView>(R.id.deleteBtn)
 

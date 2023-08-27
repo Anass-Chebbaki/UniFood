@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.example.unifood_definitivo.Model.Prodotti
 import com.squareup.picasso.Picasso
 
@@ -36,10 +37,18 @@ class Show_details : AppCompatActivity() {
             }
             val addToCartButton = findViewById<TextView>(R.id.addToCardBtn)
             addToCartButton.setOnClickListener {
+                // Creazione dell'intent e passaggio dei dati
                 val intent = Intent(this, Cart_List::class.java)
                 intent.putExtra("product", product)
                 intent.putExtra("quantity", quantity)
-                startActivity(intent)
+                intent.putExtra("imgUri",product.imgUri2)
+                Toast.makeText(this, "Elemento aggiunto al carrello", Toast.LENGTH_SHORT).show()
+                println("Dati inviati nell'Intent:")
+                println("Product: $product")
+                println("Quantity: $quantity")
+                println("ImgUri: ${product.imgUri2}")
+
+
             }
             quantityTextView = findViewById(R.id.quantityTxt)
             quantityTextView.text = quantity.toString()

@@ -1,6 +1,7 @@
 package com.example.unifood_definitivo.Model
 
 import android.net.Uri
+import java.io.Serializable
 
 data class Prodotti(
 
@@ -11,4 +12,4 @@ data class Prodotti(
     val ingredienti: String?=null,
     val categoria_appartenenza: String?=null,
     val imgUri2: String?=null //seconda immagine piu grande 900x900
-):java.io.Serializable
+): Serializable
