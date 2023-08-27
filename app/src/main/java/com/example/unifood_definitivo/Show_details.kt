@@ -35,6 +35,7 @@ class Show_details : AppCompatActivity() {
             product.imgUri2?.let {
                 Picasso.get().load(it).into(productImageView)
             }
+            val cardBtn=findViewById<TextView>(R.id.card_btn)
             val addToCartButton = findViewById<TextView>(R.id.addToCardBtn)
             addToCartButton.setOnClickListener {
                 // Creazione dell'intent e passaggio dei dati
@@ -47,6 +48,8 @@ class Show_details : AppCompatActivity() {
                 println("Product: $product")
                 println("Quantity: $quantity")
                 println("ImgUri: ${product.imgUri2}")
+                Cart_List.CartManager.addToCart(product, quantity, product.imgUri2)
+               // startActivity(intent)
 
 
             }

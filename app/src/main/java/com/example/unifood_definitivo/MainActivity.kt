@@ -126,8 +126,11 @@ class MainActivity : AppCompatActivity() {
             }
         })
         val cardBtn = findViewById<FloatingActionButton>(R.id.card_btn)
-        cardBtn.setOnClickListener {
-            val intent = Intent(this, Cart_List::class.java)
+        cardBtn.setOnClickListener {    val intent = Intent(this, Cart_List::class.java)
+            // Pass the cart items to the Cart_List activity
+            val cartItems = Cart_List.CartManager.getCartItems()
+            intent.putExtra("cartItems", ArrayList(cartItems))
+
             startActivity(intent)
         }
         val searchEditText = findViewById<EditText>(R.id.editTextTextPersonName)

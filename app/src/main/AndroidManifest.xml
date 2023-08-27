@@ -17,9 +17,6 @@
             android:name=".Cart_List"
             android:exported="false" />
         <activity
-            android:name=".Cart"
-            android:exported="false" />
-        <activity
             android:name=".Show_details"
             android:exported="false" />
         <activity

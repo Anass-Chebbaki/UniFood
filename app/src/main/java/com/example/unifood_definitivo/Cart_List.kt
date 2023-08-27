@@ -19,48 +19,74 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
  class Cart_List : AppCompatActivity() {
 
-
-  private lateinit var recyclerView: RecyclerView
-  private lateinit var cartAdapter: CartAdapter
-  private val cartProducts: MutableList<CartProduct> = mutableListOf()
+  private val savedCartItems = ArrayList<CartProduct>()
+  private lateinit var cartRecyclerView: RecyclerView
+  private lateinit var cartListAdapter: CartAdapter
+  private val cartItems = ArrayList<CartProduct>()
 
   override fun onCreate(savedInstanceState: Bundle?) {
    super.onCreate(savedInstanceState)
    setContentView(R.layout.activity_cart_list)
 
-   recyclerView = findViewById(R.id.recyclerview)
-
-   // Verifica se l'Intent contiene i dati necessari
-   if (intent.hasExtra("product") && intent.hasExtra("quantity") && intent.hasExtra("imgUri")) {
-    // Ottieni i dati dall'Intent
-    val product = intent.getSerializableExtra("product") as? Prodotti
+   cartRecyclerView = findViewById(R.id.recyclerview)
+   cartListAdapter = CartAdapter(cartItems)
+   cartRecyclerView.adapter = cartListAdapter
+   cartRecyclerView.layoutManager = LinearLayoutManager(this)
+   val intentCartItems = intent.getSerializableExtra("cartItems") as ArrayList<CartProduct>?
+   if (intentCartItems != null) {
+    cartItems.addAll(intentCartItems)
+    cartListAdapter.notifyDataSetChanged()
+   } else {
+    // Verifica se ci sono dati nell'Intent e aggiungi il prodotto al carrello
+    val product = intent.getSerializableExtra("product") as Prodotti?
     val quantity = intent.getIntExtra("quantity", 0)
     val imgUri = intent.getStringExtra("imgUri")
+    println("Dati Ricevuti nell'Intent:")
+    println("Product: $product")
+    println("Quantity: $quantity")
+    println("ImgUri: $imgUri")
 
-    // Verifica se i dati non sono nulli
-    if (product != null && imgUri != null) {
-     // Dati ricevuti correttamente
-     println("Product: $product")
-     println("Quantity: $quantity")
-     println("ImgUri: $imgUri")
-
-     // Crea un oggetto CartProduct con le informazioni ricevute
-     val cartProduct = CartProduct(product, quantity, imgUri)
-     cartProducts.add(cartProduct)
-
-     // Inizializza e imposta l'adapter
-     cartAdapter = CartAdapter(cartProducts)
-     recyclerView.layoutManager = LinearLayoutManager(this)
-     recyclerView.adapter = cartAdapter
-    } else {
-     // Alcuni dati sono nulli, mostra un messaggio di errore
-     Toast.makeText(this, "Dati ricevuti dall'Intent non validi", Toast.LENGTH_SHORT).show()
+    if (product != null) {
+     val cartItem = CartProduct(product, quantity, imgUri, product.prezzo?.times(quantity))
+     cartItem.total = product.prezzo?.times(quantity)
+     cartItems.add(cartItem)
+     cartListAdapter.notifyDataSetChanged() // Aggiorna la RecyclerView
     }
-   } else {
-    // Messaggio di avviso nel caso in cui manchino i dati nell'Intent
-    Toast.makeText(this, "Dati mancanti nell'Intent", Toast.LENGTH_SHORT).show()
-    // Puoi anche chiudere questa activity se i dati sono necessari
-    finish()
+   }
+   calculateAndDisplayTotal()
+  }
+  private fun calculateAndDisplayTotal() {
+   val subtotal = calculateSubtotal()
+   val commission = 2.0
+   val total = subtotal + commission
+
+   val subtotalView = findViewById<TextView>(R.id.totalFeeTxt)
+   val commissionView = findViewById<TextView>(R.id.taxTxt)
+   val totalView = findViewById<TextView>(R.id.totalTxt)
+
+   subtotalView.text = "$$subtotal"
+   commissionView.text = " $$commission"
+   totalView.text = "$$total"
+  }
+
+  private fun calculateSubtotal(): Double {
+   var subtotal = 0.0
+   for (cartItem in cartItems) {
+    subtotal += cartItem.total ?: 0.0
+   }
+   return subtotal
+  }
+
+  object CartManager {
+   private val cartItems = ArrayList<CartProduct>()
+   fun addToCart(product: Prodotti, quantity: Int, imgUri: String?) {
+    val cartItem = CartProduct(product, quantity, imgUri, product.prezzo?.times(quantity))
+    cartItem.total = product.prezzo?.times(quantity)
+    cartItems.add(cartItem)
+   }
+
+   fun getCartItems(): List<CartProduct> {
+    return cartItems
    }
   }
  }
