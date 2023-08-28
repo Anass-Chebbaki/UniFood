@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.example.unifood_definitivo.Model.Prodotti
+import com.example.unifood_definitivo.Model.User
 import com.squareup.picasso.Picasso
 
 class Show_details : AppCompatActivity() {
@@ -18,6 +19,7 @@ class Show_details : AppCompatActivity() {
         setContentView(R.layout.activity_show_details)
 
         val product = intent.getSerializableExtra("product") as? Prodotti
+        val userId = intent.getStringExtra("userId")
         if (product != null) {
             // Populate your layout with the details of the selected product
             val productNameTextView = findViewById<TextView>(R.id.titleTxt)
@@ -48,7 +50,12 @@ class Show_details : AppCompatActivity() {
                 println("Product: $product")
                 println("Quantity: $quantity")
                 println("ImgUri: ${product.imgUri2}")
-                Cart_List.CartManager.addToCart(product, quantity, product.imgUri2)
+
+                if (userId != null) {
+                    Cart_List.CartManager.addToCart(userId,product, quantity, product.imgUri2)
+                }
+
+
                // startActivity(intent)
 
 

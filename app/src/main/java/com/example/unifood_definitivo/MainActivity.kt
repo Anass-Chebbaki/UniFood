@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 //commit a caso
 
         val user = intent.getSerializableExtra("user") as? User
+        val userId= user?.id
         if (user != null) {
             val userName = user.name
             val userEmail=user.email
@@ -63,6 +64,7 @@ class MainActivity : AppCompatActivity() {
         prodottiAdapter.onItemClick = { product ->
             val intent = Intent(this@MainActivity, Show_details::class.java)
             intent.putExtra("product", product)
+            intent.putExtra("userId", userId)
             startActivity(intent)
         }
 
@@ -128,7 +130,8 @@ class MainActivity : AppCompatActivity() {
         val cardBtn = findViewById<FloatingActionButton>(R.id.card_btn)
         cardBtn.setOnClickListener {    val intent = Intent(this, Cart_List::class.java)
             // Pass the cart items to the Cart_List activity
-            val cartItems = Cart_List.CartManager.getCartItems()
+            val userId=user?.id ?: ""
+            val cartItems = Cart_List.CartManager.getCartItems(userId)
             intent.putExtra("cartItems", ArrayList(cartItems))
 
             startActivity(intent)
