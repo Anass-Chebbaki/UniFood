@@ -21,8 +21,7 @@ class CartAdapter(private val cartProducts: MutableList<CartProduct>) : Recycler
         val priceTextView: TextView = itemView.findViewById(R.id.feeEachItem)
         val totalTextView: TextView = itemView.findViewById(R.id.totalEachItem)
         val picCardTextView: ImageView = itemView.findViewById(R.id.picCard)
-        val minusButtonTextView: ImageView = itemView.findViewById(R.id.minusCardBtn)
-        val plusButtonTextView:ImageView = itemView.findViewById(R.id.plusCardBtn)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartItemViewHolder {
@@ -38,26 +37,14 @@ class CartAdapter(private val cartProducts: MutableList<CartProduct>) : Recycler
         holder.currentQuantity = currentItem.quantity
 
         holder.titleTextView.text = currentItem.product.nome_prodotto
-        holder.quantityTextView.text = currentItem.quantity.toString()
+        holder.quantityTextView.text = "${currentItem.quantity}x"
         holder.priceTextView.text = currentItem.product.prezzo.toString()
         holder.totalTextView.text = currentItem.total.toString()
         Picasso.get()
             .load(currentItem.imgUri)
             .into(holder.picCardTextView)
 
-        holder.minusButtonTextView.setOnClickListener {
-            if (holder.currentQuantity > 1) {
-                holder.currentQuantity--
-                updateQuantity(holder.currentPosition, holder.currentQuantity)
-            } else {
-                removeItem(holder.currentPosition)
-            }
-        }
 
-        holder.plusButtonTextView.setOnClickListener {
-            holder.currentQuantity++
-            updateQuantity(holder.currentPosition, holder.currentQuantity)
-        }
     }
     override fun getItemCount(): Int {
         return cartProducts.size

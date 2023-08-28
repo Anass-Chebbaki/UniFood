@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
@@ -37,43 +38,33 @@
         app:layout_constraintStart_toEndOf="@+id/picCard"
         app:layout_constraintTop_toTopOf="@+id/picCard" />
 
-    <ImageView
-        android:id="@+id/minusCardBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/picCard"
-        app:layout_constraintStart_toEndOf="@+id/picCard"
-        app:srcCompat="@drawable/minus" />
-
     <TextView
         android:id="@+id/numberItemTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginBottom="12dp"
         android:text="1"
         android:textColor="#373b54"
-        android:textStyle="bold"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/minusCardBtn"
-        app:layout_constraintStart_toEndOf="@+id/minusCardBtn"
-        app:layout_constraintTop_toTopOf="@+id/minusCardBtn" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/picCard"
+        app:layout_constraintStart_toEndOf="@+id/picCard" />
 
     <ImageView
-        android:id="@+id/plusCardBtn"
+        android:id="@+id/cestinoBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/minusCardBtn"
+        app:layout_constraintBottom_toBottomOf="@+id/numberItemTxt"
         app:layout_constraintStart_toEndOf="@+id/numberItemTxt"
-        app:layout_constraintTop_toTopOf="@+id/minusCardBtn"
-        app:srcCompat="@drawable/plus" />
+        app:layout_constraintTop_toTopOf="@+id/numberItemTxt"
+        app:srcCompat="@drawable/cestinobtn" />
 
     <TextView
         android:id="@+id/feeEachItem"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="22dp"
         android:layout_marginEnd="16dp"
         android:text="0"
         android:textColor="#373b54"
@@ -101,9 +92,9 @@
         android:textColor="#373b54"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/plusCardBtn"
+        app:layout_constraintBottom_toBottomOf="@+id/cestinoBtn"
         app:layout_constraintEnd_toEndOf="@+id/feeEachItem"
-        app:layout_constraintTop_toTopOf="@+id/plusCardBtn" />
+        app:layout_constraintTop_toTopOf="@+id/cestinoBtn" />
 
     <TextView
         android:id="@+id/textView21"
