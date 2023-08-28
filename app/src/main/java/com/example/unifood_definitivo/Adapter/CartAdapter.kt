@@ -10,16 +10,19 @@ import com.example.unifood_definitivo.Model.CartProduct
 import com.example.unifood_definitivo.R
 import com.squareup.picasso.Picasso
 
-class CartAdapter(private val cartProducts: List<CartProduct>) : RecyclerView.Adapter<CartAdapter.CartItemViewHolder>() {
-
+class CartAdapter(private val cartProducts: MutableList<CartProduct>) : RecyclerView.Adapter<CartAdapter.CartItemViewHolder>() {
 
 
     class CartItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var currentPosition: Int = 0
+        var currentQuantity: Int = 0
         val titleTextView: TextView = itemView.findViewById(R.id.title2Txt)
         val quantityTextView: TextView = itemView.findViewById(R.id.numberItemTxt)
         val priceTextView: TextView = itemView.findViewById(R.id.feeEachItem)
         val totalTextView: TextView = itemView.findViewById(R.id.totalEachItem)
-        val picCardTextView: ImageView=itemView.findViewById(R.id.picCard)
+        val picCardTextView: ImageView = itemView.findViewById(R.id.picCard)
+        val minusButtonTextView: ImageView = itemView.findViewById(R.id.minusCardBtn)
+        val plusButtonTextView:ImageView = itemView.findViewById(R.id.plusCardBtn)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartItemViewHolder {
@@ -31,20 +34,43 @@ class CartAdapter(private val cartProducts: List<CartProduct>) : RecyclerView.Ad
     override fun onBindViewHolder(holder: CartItemViewHolder, position: Int) {
         val currentItem = cartProducts[position]
 
+        holder.currentPosition = position
+        holder.currentQuantity = currentItem.quantity
+
         holder.titleTextView.text = currentItem.product.nome_prodotto
         holder.quantityTextView.text = currentItem.quantity.toString()
         holder.priceTextView.text = currentItem.product.prezzo.toString()
         holder.totalTextView.text = currentItem.total.toString()
         Picasso.get()
-            .load(currentItem.imgUri) // Assumi che imgUri sia l'URL dell'immagine
+            .load(currentItem.imgUri)
             .into(holder.picCardTextView)
 
-        // Aggiungi eventuali logiche per i pulsanti o altre interazioni
+        holder.minusButtonTextView.setOnClickListener {
+            if (holder.currentQuantity > 1) {
+                holder.currentQuantity--
+                updateQuantity(holder.currentPosition, holder.currentQuantity)
+            } else {
+                removeItem(holder.currentPosition)
+            }
+        }
+
+        holder.plusButtonTextView.setOnClickListener {
+            holder.currentQuantity++
+            updateQuantity(holder.currentPosition, holder.currentQuantity)
+        }
     }
-
-
     override fun getItemCount(): Int {
         return cartProducts.size
     }
 
+    private fun removeItem(position: Int) {
+        cartProducts.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
+    private fun updateQuantity(position: Int, newQuantity: Int) {
+        val updatedItem = cartProducts[position].copy(quantity = newQuantity)
+        cartProducts[position] = updatedItem
+        notifyItemChanged(position)
+    }
 }
