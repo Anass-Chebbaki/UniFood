@@ -1,21 +1,17 @@
 package com.example.unifood_definitivo
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.LinearLayout
-import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.loginsignupauth.MainActivity
 import com.example.unifood_definitivo.Adapter.CartAdapter
-import com.example.unifood_definitivo.Model.CartProduct
+import com.example.unifood_definitivo.Adapter.OrariAdapter
+import com.example.unifood_definitivo.Model.*
 
 
-import com.example.unifood_definitivo.Model.Prodotti
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.database.*
 
 class Cart_List : AppCompatActivity() {
  private val userCarts = HashMap<String, ArrayList<CartProduct>>()
@@ -23,11 +19,18 @@ class Cart_List : AppCompatActivity() {
  private lateinit var cartRecyclerView: RecyclerView
  private lateinit var cartListAdapter: CartAdapter
  private val cartItems = ArrayList<CartProduct>()
+ private lateinit var database: DatabaseReference
+ private val orariList = ArrayList<Orari>()
+ private lateinit var orariAdapter: OrariAdapter
 
  override fun onCreate(savedInstanceState: Bundle?) {
   super.onCreate(savedInstanceState)
   setContentView(R.layout.activity_cart_list)
-
+  database = FirebaseDatabase.getInstance().reference.child("Orari")
+  val orariRecyclerView = findViewById<RecyclerView>(R.id.recyclerview2)
+  orariAdapter = OrariAdapter(emptyList())
+  orariRecyclerView.adapter = orariAdapter
+  orariRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
   cartRecyclerView = findViewById(R.id.recyclerview)
   cartListAdapter = CartAdapter(cartItems)
   cartRecyclerView.adapter = cartListAdapter
@@ -56,9 +59,10 @@ class Cart_List : AppCompatActivity() {
     cartListAdapter.notifyDataSetChanged() // Aggiorna la RecyclerView
    }
   }
-  calculateAndDisplayTotal()
- }
 
+  calculateAndDisplayTotal()
+  fetchOrariData()
+ }
  private fun calculateAndDisplayTotal() {
   val subtotal = calculateSubtotal(cartItems)
   val commission = 2.0
@@ -81,21 +85,46 @@ class Cart_List : AppCompatActivity() {
   return subtotal
  }
 
- object CartManager {
-  private val userCarts = HashMap<String, ArrayList<CartProduct>>()
+ private fun fetchOrariData() {
+  val orariList = ArrayList<Orari>() // Create a list to store fetched data
+  database.addValueEventListener(object : ValueEventListener {
+   override fun onDataChange(snapshot: DataSnapshot) {
+    orariList.clear()
+    for (orariSnapshot in snapshot.children) {
+     val disponibilita = orariSnapshot.child("disponibilita").getValue(Int::class.java)
+     val fascia_oraria = orariSnapshot.child("fascia_oraria").getValue(String::class.java)
+     if (disponibilita != null && fascia_oraria != null) {
+      println("Disponibilita: $disponibilita, Fascia oraria: $fascia_oraria")
+      val orari = Orari(disponibilita, fascia_oraria)
+      orariList.add(orari)
+     }
+    }
+    orariAdapter.updateData(orariList) // Update the adapter with fetched data
+   }
 
-  fun addToCart(userId: String, product: Prodotti, quantity: Int, imgUri: String?) {
-   val userCart = userCarts.getOrPut(userId) { ArrayList() }
-   val cartItem = CartProduct(product, quantity, imgUri, product.prezzo?.times(quantity))
-   cartItem.total = product.prezzo?.times(quantity)
-   userCart.add(cartItem)
-  }
+   override fun onCancelled(error: DatabaseError) {
+    // Handle onCancelled if needed
+   }
+  })
+ }
 
-  fun getCartItems(userId: String): List<CartProduct> {
-   return userCarts[userId] ?: emptyList()
+
+
+  object CartManager {
+   private val userCarts = HashMap<String, ArrayList<CartProduct>>()
+
+   fun addToCart(userId: String, product: Prodotti, quantity: Int, imgUri: String?) {
+    val userCart = userCarts.getOrPut(userId) { ArrayList() }
+    val cartItem = CartProduct(product, quantity, imgUri, product.prezzo?.times(quantity))
+    cartItem.total = product.prezzo?.times(quantity)
+    userCart.add(cartItem)
+   }
+
+   fun getCartItems(userId: String): List<CartProduct> {
+    return userCarts[userId] ?: emptyList()
+   }
   }
  }
-}
 
 
 
