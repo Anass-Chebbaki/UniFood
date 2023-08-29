@@ -6,4 +6,4 @@ data class Ordine(
     val numero_ordine: Int?,
     val prezzo: Double?,
     val userId:String?= null
-)
+): java.io.Serializable

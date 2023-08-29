@@ -72,6 +72,8 @@ class Cart_List : AppCompatActivity() {
   val commission = 2.0
   val total = subtotal + commission
 
+  //aaaa
+
   val subtotalView = findViewById<TextView>(R.id.totalFeeTxt)
   val commissionView = findViewById<TextView>(R.id.taxTxt)
   val totalView = findViewById<TextView>(R.id.totalTxt)
@@ -143,5 +145,4 @@ class Cart_List : AppCompatActivity() {
   }
  }
 }
-
 
