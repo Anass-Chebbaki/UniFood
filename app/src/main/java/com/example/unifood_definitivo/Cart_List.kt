@@ -54,7 +54,7 @@ class Cart_List : AppCompatActivity() {
     cartListAdapter.notifyDataSetChanged() // Aggiorna la RecyclerView
    }
   }
-  val inviaOrdineButton = findViewById<TextView>(R.id.textView16)
+  val inviaOrdineButton = findViewById<TextView>(R.id.checkoutBtn)
   inviaOrdineButton.setOnClickListener {
    val fasciaOraria = orariAdapter.getSelectedFasciaOraria()?:"Fascia oraria non selezionata" // Ottieni la fascia oraria selezionata
    val userId="prova"
@@ -128,21 +128,20 @@ class Cart_List : AppCompatActivity() {
 
 
 
-  object CartManager {
-   private val userCarts = HashMap<String, ArrayList<CartProduct>>()
+ object CartManager {
+  private val userCarts = HashMap<String, ArrayList<CartProduct>>()
 
-   fun addToCart(userId: String, product: Prodotti, quantity: Int, imgUri: String?) {
-    val userCart = userCarts.getOrPut(userId) { ArrayList() }
-    val cartItem = CartProduct(product, quantity, imgUri, product.prezzo?.times(quantity))
-    cartItem.total = product.prezzo?.times(quantity)
-    userCart.add(cartItem)
-   }
+  fun addToCart(userId: String, product: Prodotti, quantity: Int, imgUri: String?) {
+   val userCart = userCarts.getOrPut(userId) { ArrayList() }
+   val cartItem = CartProduct(product, quantity, imgUri, product.prezzo?.times(quantity))
+   cartItem.total = product.prezzo?.times(quantity)
+   userCart.add(cartItem)
+  }
 
-   fun getCartItems(userId: String): List<CartProduct> {
-    return userCarts[userId] ?: emptyList()
-   }
+  fun getCartItems(userId: String): List<CartProduct> {
+   return userCarts[userId] ?: emptyList()
   }
  }
-
+}
 
 
