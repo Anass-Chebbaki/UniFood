@@ -41,23 +41,27 @@ class Cart_List : AppCompatActivity() {
    cartListAdapter.notifyDataSetChanged()
   } else {
    // Verifica se ci sono dati nell'Intent e aggiungi il prodotto al carrello
-
-
    val product = intent.getSerializableExtra("product") as Prodotti?
    val quantity = intent.getIntExtra("quantity", 0)
    val imgUri = intent.getStringExtra("imgUri")
-   println("#######################Dati Ricevuti nell'Intent:")
-   println("Product: $product")
-   println("Quantity: $quantity")
-   println("ImgUri: $imgUri")
    val userId = intent.getStringExtra("userId") ?: ""
-   val userCart = userCarts.getOrPut(userId) { ArrayList() }
+
+   //val userCart = userCarts.getOrPut(userId) { ArrayList() }
    if (product != null) {
     val cartItem = CartProduct(product, quantity, imgUri, product.prezzo?.times(quantity))
     cartItem.total = product.prezzo?.times(quantity)
     cartItems.add(cartItem)
     cartListAdapter.notifyDataSetChanged() // Aggiorna la RecyclerView
    }
+  }
+  val inviaOrdineButton = findViewById<TextView>(R.id.textView16)
+  inviaOrdineButton.setOnClickListener {
+   val fasciaOraria = orariAdapter.getSelectedFasciaOraria()?:"Fascia oraria non selezionata" // Ottieni la fascia oraria selezionata
+   val userId="prova"
+   // Recupera l'ID dell'utente dall'Intent
+   val total = calculateSubtotal(cartItems) + 2.0 // Calcola il totale del carrello
+   // Chiamata alla funzione per creare e inviare l'ordine al database
+   creaEInviaOrdine(fasciaOraria, userId, total)
   }
 
   calculateAndDisplayTotal()
@@ -83,6 +87,20 @@ class Cart_List : AppCompatActivity() {
    subtotal += cartItem.total ?: 0.0
   }
   return subtotal
+ }
+ private fun creaEInviaOrdine(fasciaOraria: String, userId: String, total: Double) {
+  val numeroOrdine = (1..1000).random() // Genera un numero casuale tra 1 e 1000
+  val cartItems = cartItems // Utilizza la lista dei prodotti nel carrello
+  val order = Ordine(
+   fascia_oraria = fasciaOraria,
+   lista_prodotti = cartItems,
+   numero_ordine = numeroOrdine,
+   prezzo = total,
+   userId = userId
+  )
+  val ordersReference: DatabaseReference = FirebaseDatabase.getInstance().reference.child("Ordini")
+  val newOrderReference = ordersReference.push()
+  newOrderReference.setValue(order)
  }
 
  private fun fetchOrariData() {

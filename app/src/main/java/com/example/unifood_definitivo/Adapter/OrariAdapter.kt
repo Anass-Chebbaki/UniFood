@@ -24,7 +24,10 @@ class OrariAdapter(private var orariList: List<Orari>) : RecyclerView.Adapter<Or
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val orariData = orariList[position]
         holder.fascia_orariaTextView.text=orariData.fascia_oraria
-        holder.itemView.setOnClickListener {}
+        holder.itemView.setOnClickListener {
+            selectedFasciaOraria = orariData.fascia_oraria
+            notifyDataSetChanged()
+        }
 
     }
 
