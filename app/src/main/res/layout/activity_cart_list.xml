@@ -147,6 +147,14 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/fasciaorariaView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" Hai selezionato la seguente fascia oraria:"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/checkoutBtn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"

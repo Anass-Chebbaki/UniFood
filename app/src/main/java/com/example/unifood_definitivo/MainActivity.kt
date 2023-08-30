@@ -40,10 +40,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//commit a caso
-
         val user = intent.getSerializableExtra("user") as? User
         val userId= user?.id
+        val balance = user?.initialBalance
         if (user != null) {
             val userName = user.name
             val userEmail=user.email
@@ -128,11 +127,14 @@ class MainActivity : AppCompatActivity() {
             }
         })
         val cardBtn = findViewById<FloatingActionButton>(R.id.card_btn)
-        cardBtn.setOnClickListener {    val intent = Intent(this, Cart_List::class.java)
+        cardBtn.setOnClickListener {
+            val intent = Intent(this, Cart_List::class.java)
             // Pass the cart items to the Cart_List activity
             val userId=user?.id ?: ""
             val cartItems = Cart_List.CartManager.getCartItems(userId)
             intent.putExtra("cartItems", ArrayList(cartItems))
+            intent.putExtra("saldo",balance)
+            intent.putExtra("userid",userId)
 
             startActivity(intent)
         }
