@@ -62,6 +62,8 @@ class Cart_List : AppCompatActivity() {
    // Chiamata alla funzione per creare e inviare l'ordine al database
    if (user != null) {
     creaEInviaOrdine(fasciaOraria, user, total,saldo)
+    val ordiniSemplificato = OrdiniSemplificato()
+    ordiniSemplificato.semplificaOrdini()
    }
   }
 
@@ -194,7 +196,6 @@ class Cart_List : AppCompatActivity() {
   }
  }
 }
-
 
 
 

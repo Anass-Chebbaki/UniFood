@@ -17,6 +17,7 @@ import com.example.unifood_definitivo.Adapter.ProdottiAdapter
 import com.example.unifood_definitivo.Cart_List
 import com.example.unifood_definitivo.ListaOrdini
 import com.example.unifood_definitivo.Model.Categorie
+import com.example.unifood_definitivo.Model.OrdiniSemplificato
 import com.example.unifood_definitivo.Model.Prodotti
 
 import com.example.unifood_definitivo.R
@@ -24,6 +25,8 @@ import com.example.unifood_definitivo.Show_details
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
