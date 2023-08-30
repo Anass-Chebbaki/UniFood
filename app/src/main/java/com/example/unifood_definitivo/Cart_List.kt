@@ -53,10 +53,12 @@ class Cart_List : AppCompatActivity() {
     cartListAdapter.notifyDataSetChanged() // Aggiorna la RecyclerView
    }
   }
+  val fasciaOrariaView = findViewById<TextView>(R.id.fasciaorariaView)
   val inviaOrdineButton = findViewById<TextView>(R.id.checkoutBtn)
   inviaOrdineButton.setOnClickListener {
    val user= intent.getStringExtra("userid")
    val fasciaOraria = orariAdapter.getSelectedFasciaOraria()?:"Fascia oraria non selezionata" // Ottieni la fascia oraria selezionata
+   fasciaOrariaView.text = "Hai selezionato la seguente fascia oraria: $fasciaOraria"
    // Recupera l'ID dell'utente dall'Intent
    val total = calculateSubtotal(cartItems) + 2.0 // Calcola il totale del carrello
    // Chiamata alla funzione per creare e inviare l'ordine al database
@@ -96,7 +98,10 @@ class Cart_List : AppCompatActivity() {
  private fun creaEInviaOrdine(fasciaOraria: String, userId: String, total: Double, balance: Double) {
   val numeroOrdine = (1..1000).random()
   val cartItems = cartItems
-
+  if (cartItems.isEmpty()) {
+   Toast.makeText(this, "Il carrello è vuoto. Aggiungi prodotti prima di effettuare l'ordine.", Toast.LENGTH_SHORT).show()
+   return
+  }
   if (balance < total) {
    Toast.makeText(this, "Saldo insufficiente", Toast.LENGTH_SHORT).show()
    return
