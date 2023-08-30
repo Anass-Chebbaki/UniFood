@@ -143,6 +143,10 @@ class Cart_List : AppCompatActivity() {
        orarioSnapshot.child("disponibilita").ref.setValue(updatedDisponibilita)
 
        Toast.makeText(this@Cart_List, "Ordine effettuato con successo!", Toast.LENGTH_SHORT).show()
+       CartManager.clearCart(userId)
+       cartListAdapter.updateCartItems(CartManager.getCartItems(userId))
+       calculateSubtotal(cartItems)
+       calculateAndDisplayTotal()
        return
       } else {
        Toast.makeText(this@Cart_List, "Fascia oraria non disponibile,scegli un'altra!!", Toast.LENGTH_SHORT).show()
@@ -198,6 +202,9 @@ class Cart_List : AppCompatActivity() {
 
   fun getCartItems(userId: String): List<CartProduct> {
    return userCarts[userId] ?: emptyList()
+  }
+  fun clearCart(userId: String) {
+   userCarts.remove(userId)
   }
  }
 }

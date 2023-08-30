@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.unifood_definitivo.Cart_List
 import com.example.unifood_definitivo.Model.CartProduct
 import com.example.unifood_definitivo.R
 import com.squareup.picasso.Picasso
@@ -59,5 +60,10 @@ class CartAdapter(private val cartProducts: MutableList<CartProduct>) : Recycler
         val updatedItem = cartProducts[position].copy(quantity = newQuantity)
         cartProducts[position] = updatedItem
         notifyItemChanged(position)
+    }
+    fun updateCartItems(newCartItems: List<CartProduct>) {
+        cartProducts.clear()
+        cartProducts.addAll(newCartItems)
+        notifyDataSetChanged()
     }
 }
