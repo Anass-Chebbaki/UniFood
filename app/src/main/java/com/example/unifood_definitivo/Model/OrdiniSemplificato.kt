@@ -23,10 +23,12 @@ class OrdiniSemplificato {
                     val prodottiSnapshot = ordineSnapshot.child("lista_prodotti")
                     for (prodottoSnapshot in prodottiSnapshot.children) {
                         val nomeProdotto = prodottoSnapshot.child("product").child("nome_prodotto").getValue(String::class.java)
+                        val quantity = prodottoSnapshot.child("quantity").getValue(Int::class.java) ?: 0
                         nomeProdotto?.let {
-                            nomiProdotti.add(it)
+                            nomiProdotti.add("$it x$quantity")
                         }
                     }
+
 
                     val ordineSemplificato = OrdineS(numeroOrdine, userId, prezzo, fasciaOraria, nomiProdotti)
                     ordiniSemplificatiRef.child(ordineSnapshot.key!!).setValue(ordineSemplificato)
