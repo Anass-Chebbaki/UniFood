@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val user = intent.getSerializableExtra("user") as? User
+        UserManager.userId = user?.id
         val userId= user?.id
         val balance = user?.initialBalance
         if (user != null) {
@@ -174,6 +175,10 @@ class MainActivity : AppCompatActivity() {
             fullProductList.filter { it.categoria_appartenenza == category }
         }
         prodottiAdapter.updateData(filteredProducts)
+    }
+
+    object UserManager {
+        var userId: String? = null
     }
 
 }

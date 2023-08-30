@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="10dp"
+    android:background="@color/white"
+    android:elevation="3dp">
+
+    <TextView
+        android:id="@+id/ordineNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Numero ordine:"
+        android:textColor="#373b54"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Orario_ordine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Orario:"
+        android:textColor="#373b54"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ordineNumber"
+        app:layout_constraintStart_toStartOf="@+id/totaleordine"
+        app:layout_constraintTop_toTopOf="@+id/ordineNumber"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/descrizioneprodotti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="lista prodotti"
+        android:textColor="#373b54"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/totaleordine"
+        app:layout_constraintStart_toStartOf="@+id/ordineNumber"
+        app:layout_constraintTop_toBottomOf="@+id/ordineNumber" />
+
+    <TextView
+        android:id="@+id/totaleordine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:text="Totale Ordine:"
+        android:textColor="#373b54"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView21"
+        app:layout_constraintEnd_toStartOf="@+id/textView21"
+        app:layout_constraintTop_toTopOf="@+id/textView21" />
+
+
+    <TextView
+        android:id="@+id/total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="0"
+        android:textColor="#373b54"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="68dp" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:text="$"
+        android:textColor="#ff3d00"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/total"
+        app:layout_constraintEnd_toStartOf="@+id/total"
+        app:layout_constraintTop_toTopOf="@+id/total" />
+</androidx.constraintlayout.widget.ConstraintLayout>

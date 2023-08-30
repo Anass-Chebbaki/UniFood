@@ -16,7 +16,7 @@ class CartAdapter(private val cartProducts: MutableList<CartProduct>) : Recycler
     class CartItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var currentPosition: Int = 0
         var currentQuantity: Int = 0
-        val titleTextView: TextView = itemView.findViewById(R.id.title2Txt)
+        val titleTextView: TextView = itemView.findViewById(R.id.ordineNumber)
         val quantityTextView: TextView = itemView.findViewById(R.id.numberItemTxt)
         val priceTextView: TextView = itemView.findViewById(R.id.feeEachItem)
         val totalTextView: TextView = itemView.findViewById(R.id.totalEachItem)
