@@ -32,9 +32,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="title"
-        android:textStyle="bold"
-        android:textSize="18sp"
         android:textColor="#373b54"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/picCard"
         app:layout_constraintTop_toTopOf="@+id/picCard" />
 

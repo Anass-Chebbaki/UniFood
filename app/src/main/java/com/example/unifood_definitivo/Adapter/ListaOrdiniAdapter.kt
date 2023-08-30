@@ -24,7 +24,7 @@ class ListaOrdiniAdapter(private var ordiniList: List<OrdineS>) : RecyclerView.A
         holder.ordineNumber.text = "Numero Ordine: ${ordine.numero_ordine}"
         holder.orario.text = "Orario: ${ordine.fascia_oraria}"
         holder.totale.text = ordine.prezzo.toString()
-        holder.listaprodotti.text = "Prodotti: ${ordine.nomiProdotti.joinToString(", ")}"
+        holder.listaprodotti.text = ordine.nomiProdotti.joinToString(", ")
     }
 
     override fun getItemCount() = ordiniList.size
