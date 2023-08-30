@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.unifood_definitivo.Adapter.CategorieAdapter
 import com.example.unifood_definitivo.Adapter.ProdottiAdapter
 import com.example.unifood_definitivo.Cart_List
+import com.example.unifood_definitivo.ListaOrdini
 import com.example.unifood_definitivo.Model.Categorie
 import com.example.unifood_definitivo.Model.Prodotti
 
@@ -40,9 +41,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         val user = intent.getSerializableExtra("user") as? User
-        UserManager.userId = user?.id
+
+       // println("##################usermanager id $UserManager.userId")
         val userId= user?.id
+
+        val imageStatoOrdini = findViewById<ImageView>(R.id.imagestatordini)
+        imageStatoOrdini.setOnClickListener {
+            val intent2 = Intent(this, ListaOrdini::class.java)
+            intent2.putExtra("userId", userId)
+            startActivity(intent2)
+        }
+
+        //UserManager.userId = userId
         val balance = user?.initialBalance
         if (user != null) {
             val userName = user.name
@@ -177,8 +189,8 @@ class MainActivity : AppCompatActivity() {
         prodottiAdapter.updateData(filteredProducts)
     }
 
-    object UserManager {
+    /*object UserManager {
         var userId: String? = null
-    }
+    }*/
 
 }
