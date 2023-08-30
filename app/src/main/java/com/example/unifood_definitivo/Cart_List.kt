@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -58,7 +59,7 @@ class Cart_List : AppCompatActivity() {
   inviaOrdineButton.setOnClickListener {
    val user= intent.getStringExtra("userid")
    val fasciaOraria = orariAdapter.getSelectedFasciaOraria()?:"Fascia oraria non selezionata" // Ottieni la fascia oraria selezionata
-   fasciaOrariaView.text = "Hai selezionato la seguente fascia oraria: $fasciaOraria"
+   fasciaOrariaView.text = "Orario selezionato: $fasciaOraria"
    // Recupera l'ID dell'utente dall'Intent
    val total = calculateSubtotal(cartItems) + 2.0 // Calcola il totale del carrello
    // Chiamata alla funzione per creare e inviare l'ordine al database
@@ -71,6 +72,18 @@ class Cart_List : AppCompatActivity() {
 
   calculateAndDisplayTotal()
   fetchOrariData()
+
+  val cestinoButton = findViewById<ImageView>(R.id.cestinoBtn)
+  cestinoButton.setOnClickListener {
+   val user = intent.getStringExtra("userid")
+   if (user != null) {
+    CartManager.clearCart(user)
+    cartListAdapter.updateCartItems(emptyList())
+    calculateAndDisplayTotal()
+    // Eventuali altre operazioni o messaggi che vuoi mostrare
+   }
+  }
+
  }
  private fun calculateAndDisplayTotal() {
   val subtotal = calculateSubtotal(cartItems)
@@ -83,9 +96,9 @@ class Cart_List : AppCompatActivity() {
   val commissionView = findViewById<TextView>(R.id.taxTxt)
   val totalView = findViewById<TextView>(R.id.totalTxt)
 
-  subtotalView.text = "$$subtotal"
-  commissionView.text = " $$commission"
-  totalView.text = "$$total"
+  subtotalView.text = "€$subtotal"
+  commissionView.text = " €$commission"
+  totalView.text = "$total"
  }
 
  private fun calculateSubtotal(userCart: ArrayList<CartProduct>): Double {
@@ -208,6 +221,5 @@ class Cart_List : AppCompatActivity() {
   }
  }
 }
-
 
 

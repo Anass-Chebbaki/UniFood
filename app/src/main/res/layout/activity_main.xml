@@ -264,7 +264,7 @@
                         android:id="@+id/textstatoordini"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Stato Ordini"
+                        android:text="I miei ordini"
                         android:textAlignment="center"
                         android:textColor="#676767"
                         android:textSize="12sp" />
@@ -302,16 +302,16 @@
                     android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/imageImpostazioni"
+                    android:id="@+id/profiloImg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/btn4" />
+                    app:srcCompat="@drawable/icons8_admin_settings_male_33" />
 
                 <TextView
-                    android:id="@+id/textimpostazioni"
+                    android:id="@+id/textProfilo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Impostazioni"
+                    android:text="Profilo"
                     android:textAlignment="center"
                     android:textColor="#676767"
                     android:textSize="12sp" />

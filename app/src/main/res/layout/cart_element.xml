@@ -51,16 +51,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/picCard"
         app:layout_constraintStart_toEndOf="@+id/picCard" />
 
-    <ImageView
-        android:id="@+id/cestinoBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/numberItemTxt"
-        app:layout_constraintStart_toEndOf="@+id/numberItemTxt"
-        app:layout_constraintTop_toTopOf="@+id/numberItemTxt"
-        app:srcCompat="@drawable/cestinobtn" />
-
     <TextView
         android:id="@+id/feeEachItem"
         android:layout_width="wrap_content"
@@ -78,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
-        android:text="$"
+        android:text="€"
         android:textColor="#ff3d00"
         app:layout_constraintBottom_toBottomOf="@+id/feeEachItem"
         app:layout_constraintEnd_toStartOf="@+id/feeEachItem"
@@ -92,16 +82,16 @@
         android:textColor="#373b54"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/cestinoBtn"
+        app:layout_constraintBottom_toBottomOf="@+id/numberItemTxt"
         app:layout_constraintEnd_toEndOf="@+id/feeEachItem"
-        app:layout_constraintTop_toTopOf="@+id/cestinoBtn" />
+        app:layout_constraintTop_toTopOf="@+id/numberItemTxt" />
 
     <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
-        android:text="$"
+        android:text="€"
         android:textColor="#ff3d00"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/totalEachItem"

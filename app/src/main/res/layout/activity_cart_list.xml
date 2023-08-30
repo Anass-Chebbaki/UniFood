@@ -60,7 +60,7 @@
                     android:id="@+id/totalFeeTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$0"
+                    android:text="0.0"
                     android:textColor="#373b54"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -98,7 +98,7 @@
                     android:id="@+id/taxTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$0"
+                    android:text="0.0"
                     android:textColor="#373b54"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -124,10 +124,19 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="€"
+                    android:textColor="@color/red"
+                    android:textSize="27sp"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/totalTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$0"
+                    android:text="0.0"
                     android:textColor="#373b54"
                     android:textSize="30sp"
                     android:textStyle="bold" />
@@ -146,26 +155,49 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/fasciaorariaView"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text=" Hai selezionato la seguente fascia oraria:"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/checkoutBtn"
+                <TextView
+                    android:id="@+id/fasciaorariaView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Orario selezionato:"
+                    android:textColor="#373b54"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="16dp"
-                android:background="@drawable/mini_redbutton"
-                android:gravity="center"
-                android:text="CheckOut"
-                android:textColor="#ffffff"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/checkoutBtn"
+                    android:layout_width="293dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/mini_redbutton"
+                    android:gravity="center"
+                    android:text="Check Out"
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/cestinoBtn"
+                    android:layout_width="58dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/cestinobtn" />
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
