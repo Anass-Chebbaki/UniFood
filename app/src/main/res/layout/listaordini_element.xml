@@ -10,7 +10,6 @@
     android:layout_marginBottom="10dp"
     android:background="@drawable/prodotti_background"
     android:elevation="4dp">
-
     <TextView
         android:id="@+id/ordineNumber"
         android:layout_width="wrap_content"
@@ -41,7 +40,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ordineNumber"
         app:layout_constraintTop_toTopOf="@+id/ordineNumber" />
-
     <TextView
         android:id="@+id/listaprodotti"
         android:layout_width="wrap_content"
@@ -60,7 +58,6 @@
         android:id="@+id/totaleordine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="212dp"
         android:layout_marginBottom="9dp"
         android:text="Totale Ordine:"
         android:textColor="#373b54"
@@ -68,6 +65,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/listaprodotti" />
+
 
     <TextView
         android:id="@+id/total"
@@ -81,7 +79,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView21"
         app:layout_constraintStart_toEndOf="@+id/textView21"
         app:layout_constraintTop_toTopOf="@+id/textView21" />
-
     <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
@@ -93,5 +90,4 @@
         app:layout_constraintBottom_toBottomOf="@+id/totaleordine"
         app:layout_constraintStart_toEndOf="@+id/totaleordine"
         app:layout_constraintTop_toTopOf="@+id/totaleordine" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
