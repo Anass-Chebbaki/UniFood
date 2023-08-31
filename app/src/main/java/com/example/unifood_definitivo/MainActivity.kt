@@ -12,16 +12,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.unifood_definitivo.*
 import com.example.unifood_definitivo.Adapter.CategorieAdapter
 import com.example.unifood_definitivo.Adapter.ProdottiAdapter
-import com.example.unifood_definitivo.Cart_List
-import com.example.unifood_definitivo.ListaOrdini
 import com.example.unifood_definitivo.Model.Categorie
 import com.example.unifood_definitivo.Model.OrdiniSemplificato
 import com.example.unifood_definitivo.Model.Prodotti
-
 import com.example.unifood_definitivo.R
-import com.example.unifood_definitivo.Show_details
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -55,6 +53,15 @@ class MainActivity : AppCompatActivity() {
             val intent2 = Intent(this, ListaOrdini::class.java)
             intent2.putExtra("userId", userId)
             startActivity(intent2)
+        }
+        val profiloImg= findViewById<ImageView>(R.id.profiloImg)
+        profiloImg.setOnClickListener{
+            val intent= Intent(this,Profilo::class.java)
+            if (user != null) {
+                intent.putExtra("userName",user.name)
+                intent.putExtra("userId", user.id)
+            }
+            startActivity(intent)
         }
 
         //UserManager.userId = userId

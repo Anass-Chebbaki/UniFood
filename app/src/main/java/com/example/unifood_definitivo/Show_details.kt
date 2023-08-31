@@ -28,7 +28,7 @@ class Show_details : AppCompatActivity() {
             // ... (other views you want to populate)
 
             productNameTextView.text = product.nome_prodotto
-            productPriceTextView.text = product.prezzo.toString()
+            productPriceTextView.text = "${product.prezzo.toString()}€"
             productDescriptionTextView.text = product.ingredienti.toString()
 
 
