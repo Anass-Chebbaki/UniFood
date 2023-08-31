@@ -35,12 +35,31 @@ class MainActivity : AppCompatActivity() {
     private lateinit var categorieAdapter: CategorieAdapter
     private lateinit var prodottiAdapter: ProdottiAdapter
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var database:FirebaseDatabase
+    private lateinit var textView:TextView
     private val fullProductList = ArrayList<Prodotti>()
     //aaaa
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        textView = findViewById(R.id.textView5) // Assicurati che l'ID sia corretto
+        database = FirebaseDatabase.getInstance()
+
+        // Riferimento al nodo "PrimoDelGiorno"
+        val reference = database.reference.child("PrimoDelGiorno")
+
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val value = snapshot.getValue(String::class.java)
+                textView.text = value
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Gestisci eventuali errori
+            }
+        })
+
 
 
         val user = intent.getSerializableExtra("user") as? User
@@ -64,6 +83,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
         //UserManager.userId = userId
         val balance = user?.initialBalance
         if (user != null) {
@@ -72,13 +92,8 @@ class MainActivity : AppCompatActivity() {
             val userId= user.id
             val welcomeTextView = findViewById<TextView>(R.id.textView)
             welcomeTextView.text = "Ciao $userName!"
-            Log.d("MainActivity", "Username: $userName")
-            Log.d("MainActivity", "User Email: $userEmail")
-            Log.d("MainActivity", "User Id: $userId")
         } else {
-            Log.e("MainActivity", "#################User object not received from LoginActivity")
         }
-
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         prodottiAdapter = ProdottiAdapter(ArrayList())
