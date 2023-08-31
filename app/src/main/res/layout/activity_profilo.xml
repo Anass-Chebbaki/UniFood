@@ -4,183 +4,212 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/profilo_background"
+    android:background="@color/white"
     tools:context=".Profilo">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="102dp"
-        android:layout_height="92dp"
-        android:layout_marginEnd="35dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView"
-        app:srcCompat="@drawable/profile" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="32dp"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold
-"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="5dp"
-        android:text="Profilo"
-        android:textColor="@color/white"
-        android:textSize="28sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/modificaView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:background="@drawable/mini_redbutton"
-        android:drawablePadding="5dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-        android:text="Modifica Profilo"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/textView11"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
-        tools:drawableEnd="@drawable/icons8_modify_20"
-        tools:textSize="16sp" />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modificaView"
-        app:layout_constraintVertical_bias="0.0">
+        android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/name"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="35dp"
-            android:background="@drawable/white_border"
-            android:drawableLeft="@drawable/ic_name"
-            android:drawablePadding="8dp"
-            android:hint="Nome"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-        <EditText
-            android:id="@+id/surname"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="35dp"
-            android:background="@drawable/white_border"
-            android:drawableLeft="@drawable/ic_name"
-            android:drawablePadding="8dp"
-            android:hint="Cognome"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="35dp"
-            android:background="@drawable/white_border"
-            android:drawableLeft="@drawable/emaild"
-            android:drawablePadding="8dp"
-            android:hint="Email"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/red_light_banner_profile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="35dp"
-            android:background="@drawable/white_border"
-            android:drawableLeft="@drawable/ic_password"
-            android:drawablePadding="8dp"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="102dp"
+                        android:layout_height="92dp"
+                        android:layout_marginEnd="35dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView"
+                        app:srcCompat="@drawable/profile" />
 
-        <EditText
-            android:id="@+id/confirm"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="35dp"
-            android:background="@drawable/white_border"
-            android:drawableLeft="@drawable/ic_password"
-            android:drawablePadding="8dp"
-            android:hint="Conferma Password"
-            android:inputType="textPassword"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="32dp"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold
+                "
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/balance"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="35dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/white_border"
-            android:drawableLeft="@drawable/ic_wallet"
-            android:drawablePadding="8dp"
-            android:hint="Saldo Iniziale"
-            android:inputType="numberDecimal"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginBottom="24dp"
+                        android:elevation="5dp"
+                        android:text="Profilo"
+                        android:textColor="@color/white"
+                        android:textSize="28sp"
+                        android:textStyle="bold|italic"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/confirm_button"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:text="Conferma Modifiche"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:backgroundTint="@color/red"
-            app:cornerRadius="30dp"
-            app:strokeColor="@color/black"
-            app:strokeWidth="2dp" />
+                <TextView
+                    android:id="@+id/modificaView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/mini_redbutton"
+                    android:drawablePadding="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp"
+                    android:text="Modifica Profilo"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+                    tools:drawableEnd="@drawable/icons8_modify_20"
+                    tools:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/modificaView">
+
+                    <EditText
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="35dp"
+                        android:background="@drawable/white_border"
+                        android:drawableLeft="@drawable/ic_name"
+                        android:drawablePadding="8dp"
+                        android:hint="Nome"
+                        android:padding="8dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+
+                    <EditText
+                        android:id="@+id/surname"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="35dp"
+                        android:background="@drawable/white_border"
+                        android:drawableLeft="@drawable/ic_name"
+                        android:drawablePadding="8dp"
+                        android:hint="Cognome"
+                        android:padding="8dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+
+                    <EditText
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="35dp"
+                        android:background="@drawable/white_border"
+                        android:drawableLeft="@drawable/emaild"
+                        android:drawablePadding="8dp"
+                        android:hint="Email"
+                        android:padding="8dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+
+                    <EditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="35dp"
+                        android:background="@drawable/white_border"
+                        android:drawableLeft="@drawable/ic_password"
+                        android:drawablePadding="8dp"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:padding="8dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+
+                    <EditText
+                        android:id="@+id/confirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="35dp"
+                        android:background="@drawable/white_border"
+                        android:drawableLeft="@drawable/ic_password"
+                        android:drawablePadding="8dp"
+                        android:hint="Conferma Password"
+                        android:inputType="textPassword"
+                        android:padding="8dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+
+                    <EditText
+                        android:id="@+id/balance"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="35dp"
+                        android:layout_marginBottom="24dp"
+                        android:background="@drawable/white_border"
+                        android:drawableLeft="@drawable/ic_wallet"
+                        android:drawablePadding="8dp"
+                        android:hint="Saldo Iniziale"
+                        android:inputType="numberDecimal"
+                        android:padding="8dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/confirm_button"
+                        android:layout_width="300dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:text="Conferma Modifiche"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        app:backgroundTint="@color/red"
+                        app:cornerRadius="30dp"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="2dp" />
 
 
-    </LinearLayout>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
