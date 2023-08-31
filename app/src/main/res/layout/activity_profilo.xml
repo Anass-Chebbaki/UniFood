@@ -45,7 +45,7 @@
         android:id="@+id/modificaView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="35dp"
         android:background="@drawable/mini_redbutton"
         android:drawablePadding="5dp"
         android:paddingLeft="10dp"
@@ -72,126 +72,113 @@
         app:layout_constraintTop_toBottomOf="@+id/modificaView"
         app:layout_constraintVertical_bias="0.0">
 
-        <ScrollView
+        <EditText
+            android:id="@+id/name"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="50dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="35dp"
+            android:background="@drawable/white_border"
+            android:drawableLeft="@drawable/ic_name"
+            android:drawablePadding="8dp"
+            android:hint="Nome"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
+        <EditText
+            android:id="@+id/surname"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="35dp"
+            android:background="@drawable/white_border"
+            android:drawableLeft="@drawable/ic_name"
+            android:drawablePadding="8dp"
+            android:hint="Cognome"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
-                <EditText
-                    android:id="@+id/name"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="35dp"
-                    android:background="@drawable/white_border"
-                    android:drawableLeft="@drawable/ic_name"
-                    android:drawablePadding="8dp"
-                    android:hint="Nome"
-                    android:padding="8dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="35dp"
+            android:background="@drawable/white_border"
+            android:drawableLeft="@drawable/emaild"
+            android:drawablePadding="8dp"
+            android:hint="Email"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
-                <EditText
-                    android:id="@+id/surname"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="35dp"
-                    android:background="@drawable/white_border"
-                    android:drawableLeft="@drawable/ic_name"
-                    android:drawablePadding="8dp"
-                    android:hint="Cognome"
-                    android:padding="8dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="35dp"
+            android:background="@drawable/white_border"
+            android:drawableLeft="@drawable/ic_password"
+            android:drawablePadding="8dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
-                <EditText
-                    android:id="@+id/email"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="35dp"
-                    android:background="@drawable/white_border"
-                    android:drawableLeft="@drawable/emaild"
-                    android:drawablePadding="8dp"
-                    android:hint="Email"
-                    android:padding="8dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+        <EditText
+            android:id="@+id/confirm"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="35dp"
+            android:background="@drawable/white_border"
+            android:drawableLeft="@drawable/ic_password"
+            android:drawablePadding="8dp"
+            android:hint="Conferma Password"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
-                <EditText
-                    android:id="@+id/password"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="35dp"
-                    android:background="@drawable/white_border"
-                    android:drawableLeft="@drawable/ic_password"
-                    android:drawablePadding="8dp"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:padding="8dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+        <EditText
+            android:id="@+id/balance"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/white_border"
+            android:drawableLeft="@drawable/ic_wallet"
+            android:drawablePadding="8dp"
+            android:hint="Saldo Iniziale"
+            android:inputType="numberDecimal"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
-                <EditText
-                    android:id="@+id/confirm"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="35dp"
-                    android:background="@drawable/white_border"
-                    android:drawableLeft="@drawable/ic_password"
-                    android:drawablePadding="8dp"
-                    android:hint="Conferma Password"
-                    android:inputType="textPassword"
-                    android:padding="8dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
-
-                <EditText
-                    android:id="@+id/balance"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="35dp"
-                    android:layout_marginBottom="24dp"
-                    android:background="@drawable/white_border"
-                    android:drawableLeft="@drawable/ic_wallet"
-                    android:drawablePadding="8dp"
-                    android:hint="Saldo Iniziale"
-                    android:inputType="numberDecimal"
-                    android:padding="8dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/confirm_button"
-                    android:layout_width="300dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"
-                    android:text="Conferma Modifiche"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    app:backgroundTint="@color/red"
-                    app:cornerRadius="30dp"
-                    app:strokeColor="@color/black"
-                    app:strokeWidth="2dp" />
-
-            </LinearLayout>
-        </ScrollView>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/confirm_button"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="Conferma Modifiche"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:backgroundTint="@color/red"
+            app:cornerRadius="30dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp" />
 
 
     </LinearLayout>
