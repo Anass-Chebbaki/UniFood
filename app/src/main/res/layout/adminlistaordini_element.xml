@@ -38,7 +38,7 @@
         android:id="@+id/listaprodotti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="40dp"
         android:text="prodotti"
         android:textColor="#373b54"
         android:textSize="15sp"
@@ -49,7 +49,6 @@
         android:id="@+id/totaleordine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:layout_marginBottom="10dp"
         android:text="Totale:"
         android:textColor="#373b54"
@@ -83,7 +82,7 @@
         app:layout_constraintStart_toEndOf="@+id/totaleordine"
         app:layout_constraintTop_toTopOf="@+id/totaleordine" />
 
-    <Button
+    <TextView
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="37dp"
@@ -93,8 +92,9 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/mini_redbutton"
         android:gravity="center"
-        android:text="Ordine Completato"
+        android:text="ORDINE COMPLETATO"
         android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

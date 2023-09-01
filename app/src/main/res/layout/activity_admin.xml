@@ -74,6 +74,21 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtprimo" />
 
+                <TextView
+                    android:id="@+id/sendButton"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/search_background2"
+                    android:gravity="center"
+                    android:text="SALVA"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/txtprimo"
+                    app:layout_constraintEnd_toEndOf="@+id/txtprimo"
+                    app:layout_constraintTop_toTopOf="@+id/txtprimo" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView1"
                     android:layout_width="match_parent"
@@ -87,23 +102,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView7"
                     tools:elevation="3dp" />
 
-                <Button
-                    android:id="@+id/sendButton"
-                    android:layout_width="68dp"
-                    android:layout_height="31dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="9dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/search_background2"
-                    android:gravity="center"
-                    android:text="SALVA"
-                    android:textColor="@color/white"
-                    android:textSize="9sp"
-                    android:textStyle="normal"
-                    app:layout_constraintBottom_toBottomOf="@+id/txtprimo"
-                    app:layout_constraintEnd_toEndOf="@+id/txtprimo"
-                    app:layout_constraintTop_toTopOf="@+id/txtprimo"
-                    app:layout_constraintVertical_bias="0.0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>

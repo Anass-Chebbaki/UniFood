@@ -41,7 +41,7 @@
             val numeroOrdineTextView: TextView = itemView.findViewById(R.id.ordineNumber)
             val orarioOrdineTextView: TextView = itemView.findViewById(R.id.Orario_ordine)
             val listaProdottiTextView: TextView = itemView.findViewById(R.id.listaprodotti)
-            val button:Button=itemView.findViewById(R.id.button)
+            val button:TextView =itemView.findViewById(R.id.button)
 
             // Inizializza le altre viste del layout dell'elemento
         }

@@ -22,7 +22,7 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
     private lateinit var adapter: Admin_OrdiniAdapter
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var database: FirebaseDatabase
-    private lateinit var sendButton: Button
+    private lateinit var sendButton: TextView
     private lateinit var editText: EditText
     private var orderList: MutableList<OrdineS> = mutableListOf()
 
