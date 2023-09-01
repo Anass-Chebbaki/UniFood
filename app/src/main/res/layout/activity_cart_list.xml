@@ -173,17 +173,17 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_gravity="center">
 
                 <ImageView
                     android:id="@+id/cestinoBtn"
                     android:layout_width="53dp"
-                    android:layout_height="55dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="20dp"
                     android:layout_weight="1"
                     app:layout_constraintBottom_toBottomOf="@+id/checkoutBtn"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/checkoutBtn"
                     app:layout_constraintTop_toTopOf="@+id/checkoutBtn"
                     app:srcCompat="@drawable/cestinobtn" />
@@ -193,7 +193,7 @@
                     android:layout_width="293dp"
                     android:layout_height="50dp"
                     android:layout_margin="16dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="20dp"
                     android:background="@drawable/mini_redbutton"
                     android:gravity="center"
                     android:text="Check Out"
