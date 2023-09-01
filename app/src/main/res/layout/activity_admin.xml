@@ -28,74 +28,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="199dp"
+                    android:layout_height="64dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="197dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/logo_unifood_admin" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
+
+                <EditText
+                    android:id="@+id/txtprimo"
+                    android:layout_width="0dp"
+                    android:layout_height="50sp"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="32dp"
-                    android:background="@drawable/red_light_banner"
+                    android:autoSizeMinTextSize="14sp"
+                    android:background="@drawable/search_background"
+                    android:hint="Inserisci il primo del giorno..."
+                    android:paddingStart="18sp"
+                    android:paddingLeft="45dp"
+                    android:paddingEnd="18sp"
+                    android:textColor="@color/white"
+                    android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="234dp"
-                        android:layout_height="179dp"
-                        android:layout_marginEnd="180dp"
-                        android:elevation="3dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/spaghetti" />
-
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginTop="28dp"
-                        android:layout_marginEnd="16dp"
-                        android:text="Primo del Giorno"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.96"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <EditText
-                        android:id="@+id/textView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold|italic"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/textView4"
-                        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-                    <Button
-                        android:id="@+id/sendButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="35dp"
-                        android:layout_marginTop="7dp"
-                        android:layout_marginEnd="56dp"
-                        android:layout_marginBottom="16dp"
-                        android:text="Invia"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imageView2"
-                        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintTop_toBottomOf="@+id/imageView3"
+                    tools:drawablePadding="10dp"
+                    tools:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/textView7"
@@ -103,12 +69,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="16dp"
-                    android:text="Lista Ordini"
+                    android:text="Ordini"
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtprimo" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView1"
@@ -116,12 +82,29 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:clipToPadding="false"
-                    android:paddingStart="22dp"
-                    android:paddingEnd="22dp"
+                    android:paddingStart="32dp"
+                    android:paddingEnd="32dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView7"
                     tools:elevation="3dp" />
+
+                <Button
+                    android:id="@+id/sendButton"
+                    android:layout_width="68dp"
+                    android:layout_height="31dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/search_background"
+                    android:gravity="center"
+                    android:text="SALVA"
+                    android:textSize="9sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/txtprimo"
+                    app:layout_constraintEnd_toEndOf="@+id/txtprimo"
+                    app:layout_constraintTop_toTopOf="@+id/txtprimo"
+                    app:layout_constraintVertical_bias="0.0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
@@ -160,7 +143,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/icons8_checklist_33" />
+                        app:srcCompat="@drawable/icons8_user_33" />
 
                     <TextView
                         android:id="@+id/textUtenti"
@@ -168,8 +151,17 @@
                         android:layout_height="wrap_content"
                         android:text="Utenti"
                         android:textAlignment="center"
-                        android:textColor="#676767"
+                        android:textColor="@color/red"
                         android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.0001"
+                    android:background="#C8C5C5"
+                    android:orientation="vertical">
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -183,7 +175,7 @@
                         android:id="@+id/statisticheimg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/icons8_admin_settings_male_33" />
+                        app:srcCompat="@drawable/icons8_statistic_33" />
 
                     <TextView
                         android:id="@+id/textStatistiche"
@@ -191,7 +183,7 @@
                         android:layout_height="wrap_content"
                         android:text="Statistiche"
                         android:textAlignment="center"
-                        android:textColor="#676767"
+                        android:textColor="@color/red"
                         android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>

@@ -29,7 +29,7 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin)
-        editText = findViewById(R.id.textView5)
+        editText = findViewById(R.id.txtprimo)
         sendButton = findViewById(R.id.sendButton)
         recyclerView = findViewById(R.id.recyclerView1)
         layoutManager = LinearLayoutManager(this)
@@ -129,4 +129,3 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
             })
     }
 }
-

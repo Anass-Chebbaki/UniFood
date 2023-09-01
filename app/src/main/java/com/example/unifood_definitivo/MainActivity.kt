@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
 
         val user = intent.getSerializableExtra("user") as? User
 
-       // println("##################usermanager id $UserManager.userId")
+        // println("##################usermanager id $UserManager.userId")
         val userId= user?.id
 
         val imageStatoOrdini = findViewById<ImageView>(R.id.imagestatordini)
