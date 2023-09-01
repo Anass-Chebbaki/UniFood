@@ -17,6 +17,7 @@ import com.example.unifood_definitivo.Model.Ordine
 import com.example.unifood_definitivo.Model.OrdineS
 import com.google.firebase.database.*
 import com.example.unifood_definitivo.AdminUtility.Admin_OrdiniAdapter
+import java.util.*
 
 
 class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickListener {
@@ -32,61 +33,21 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_admin)
-        editText = findViewById(R.id.txtprimo)
-        sendButton = findViewById(R.id.sendButton)
-        recyclerView = findViewById(R.id.recyclerView1)
-        layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
 
-        val orderList: MutableList<OrdineS> = mutableListOf()
-        adapter = Admin_OrdiniAdapter(orderList, this@AdminActivity)
-        recyclerView.adapter = adapter
-
-        database = FirebaseDatabase.getInstance()
-        startPeriodicUpdate()
-        println("timer partito")
-
-
-        val reference = database.reference.child("OrdiniSemplificati")
-        val reference2 = database.reference.child("PrimoDelGiorno")
-        reference2.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val value = snapshot.getValue(String::class.java)
-                editText.setText(value) // Imposta il testo dell'EditText con il valore dal database
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Gestisci eventuali errori
-            }
-
-        })
-        sendButton.setOnClickListener {
-            val userInput = editText.text.toString()
-            reference2.setValue(userInput) // Aggiorna il valore nel database
+        // aggiornamento periodico della disponibilità delle fasce oraria all'apertura dell'attività
+        val now = Calendar.getInstance()
+        val tomorrow7AM = Calendar.getInstance()
+        tomorrow7AM.set(Calendar.HOUR_OF_DAY, 7)
+        tomorrow7AM.set(Calendar.MINUTE, 0)
+        tomorrow7AM.set(Calendar.SECOND, 0)
+        if (now.after(tomorrow7AM)) {
+            tomorrow7AM.add(Calendar.DATE, 1)
         }
-        reference.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                orderList.clear()
+        val timeUntilNextUpdate = tomorrow7AM.timeInMillis - now.timeInMillis
 
-                for (dataSnapshot in snapshot.children) {
-                    val ordine = dataSnapshot.getValue(OrdineS::class.java)
-
-                    // Verifica che l'ordine non sia nullo
-                    if (ordine != null) {
-                        orderList.add(ordine)
-                    }
-                }
-
-                adapter.notifyDataSetChanged()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Gestisci eventuali errori
-            }
-        })
+        // Avvia l'aggiornamento periodico ogni giorno alle 8:00
+        startPeriodicUpdate(timeUntilNextUpdate)
     }
-
     override fun onDeleteClick(ordine: OrdineS) {
         val orderNumber = ordine.numero_ordine
 
@@ -135,17 +96,26 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
             })
     }
 
-    private fun startPeriodicUpdate() {
+    private fun startPeriodicUpdate(delayMillis: Long) {
         val handler = Handler(Looper.getMainLooper())
-        handler.post(object : Runnable {
+        handler.postDelayed(object : Runnable {
             override fun run() {
-                // Esegui l'aggiornamento della quantità su 10 per tutte le fasce orarie
+                // Esegui l'aggiornamento della quantità a 10 per tutte le fasce orarie
                 updateQuantitiesTo10()
 
-                // Programma il prossimo aggiornamento dopo il periodo definito
-                handler.postDelayed(this, updateInterval.toLong())
+                // Programma il prossimo aggiornamento per il giorno successivo alle 8:00
+                val now = Calendar.getInstance()
+                val tomorrow7AM = Calendar.getInstance()
+                tomorrow7AM.set(Calendar.HOUR_OF_DAY, 7)
+                tomorrow7AM.set(Calendar.MINUTE, 0)
+                tomorrow7AM.set(Calendar.SECOND, 0)
+                if (now.after(tomorrow7AM)) {
+                    tomorrow7AM.add(Calendar.DATE, 1)
+                }
+                val timeUntilNextUpdate = tomorrow7AM.timeInMillis - now.timeInMillis
+                handler.postDelayed(this, timeUntilNextUpdate)
             }
-        })
+        }, delayMillis)
     }
 
     private fun updateQuantitiesTo10() {
