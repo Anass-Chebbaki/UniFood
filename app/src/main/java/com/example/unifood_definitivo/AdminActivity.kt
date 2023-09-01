@@ -4,6 +4,8 @@ import android.content.Intent
 import com.example.unifood_definitivo.Model.User
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -25,6 +27,8 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
     private lateinit var sendButton: TextView
     private lateinit var editText: EditText
     private var orderList: MutableList<OrdineS> = mutableListOf()
+    private val updateInterval = 24*60*60 * 1000 // 24 ore in millisecondi
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +44,8 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
         recyclerView.adapter = adapter
 
         database = FirebaseDatabase.getInstance()
+        startPeriodicUpdate()
+        println("timer partito")
 
 
         val reference = database.reference.child("OrdiniSemplificati")
@@ -128,4 +134,35 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
                 }
             })
     }
+
+    private fun startPeriodicUpdate() {
+        val handler = Handler(Looper.getMainLooper())
+        handler.post(object : Runnable {
+            override fun run() {
+                // Esegui l'aggiornamento della quantità su 10 per tutte le fasce orarie
+                updateQuantitiesTo10()
+
+                // Programma il prossimo aggiornamento dopo il periodo definito
+                handler.postDelayed(this, updateInterval.toLong())
+            }
+        })
+    }
+
+    private fun updateQuantitiesTo10() {
+        val reference = database.reference.child("Orari")
+        reference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (dataSnapshot in snapshot.children) {
+                    // Aggiorna la quantità (disponibilita) a 10 per ogni fascia oraria
+                    dataSnapshot.child("disponibilita").ref.setValue(10)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Gestisci eventuali errori
+            }
+        })
+    }
 }
+
+

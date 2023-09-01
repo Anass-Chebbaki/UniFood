@@ -7,6 +7,7 @@ import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        textView = findViewById(R.id.textView5) // Assicurati che l'ID sia corretto
+        textView = findViewById(R.id.textView5)
         database = FirebaseDatabase.getInstance()
 
         // Riferimento al nodo "PrimoDelGiorno"
