@@ -259,7 +259,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/icons8_checklist_33" />
+                        app:srcCompat="@drawable/icons8_list_33" />
 
                     <TextView
                         android:id="@+id/textstatoordini"
@@ -306,7 +306,7 @@
                         android:id="@+id/profiloImg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/icons8_admin_settings_male_33" />
+                        app:srcCompat="@drawable/icons8_user_33" />
 
                     <TextView
                         android:id="@+id/textProfilo"
