@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.unifood_definitivo.Cart_List
 import com.example.unifood_definitivo.Model.CartProduct
 import com.example.unifood_definitivo.R
 import com.squareup.picasso.Picasso
@@ -17,7 +16,7 @@ class CartAdapter(private val cartProducts: MutableList<CartProduct>) : Recycler
     class CartItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var currentPosition: Int = 0
         var currentQuantity: Int = 0
-        val titleTextView: TextView = itemView.findViewById(R.id.ordineNumber)
+        val titleTextView: TextView = itemView.findViewById(R.id.idUtente)
         val quantityTextView: TextView = itemView.findViewById(R.id.numberItemTxt)
         val priceTextView: TextView = itemView.findViewById(R.id.feeEachItem)
         val totalTextView: TextView = itemView.findViewById(R.id.totalEachItem)

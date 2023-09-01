@@ -9,7 +9,7 @@
     android:elevation="4dp">
 
     <TextView
-        android:id="@+id/ordineNumber"
+        android:id="@+id/idUtente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -17,8 +17,8 @@
         android:textColor="#373b54"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/listaprodotti"
-        app:layout_constraintStart_toStartOf="@+id/listaprodotti" />
+        app:layout_constraintBottom_toTopOf="@+id/userName"
+        app:layout_constraintStart_toStartOf="@+id/userName" />
 
 
     <TextView
@@ -29,13 +29,13 @@
         android:textColor="#373b54"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/ordineNumber"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/ordineNumber" />
+        app:layout_constraintBottom_toBottomOf="@+id/idUtente"
+        app:layout_constraintEnd_toEndOf="@+id/cancellautente"
+        app:layout_constraintTop_toTopOf="@+id/idUtente" />
 
 
     <TextView
-        android:id="@+id/listaprodotti"
+        android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
@@ -54,8 +54,8 @@
         android:textColor="#373b54"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/button" />
+        app:layout_constraintBottom_toTopOf="@+id/cancellautente"
+        app:layout_constraintStart_toStartOf="@+id/cancellautente" />
 
     <TextView
         android:id="@+id/total"
@@ -83,7 +83,7 @@
         app:layout_constraintTop_toTopOf="@+id/totaleordine" />
 
     <TextView
-        android:id="@+id/button"
+        android:id="@+id/cancellautente"
         android:layout_width="match_parent"
         android:layout_height="37dp"
         android:layout_marginStart="25dp"

@@ -5,9 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.unifood_definitivo.Model.Ordine
 import com.example.unifood_definitivo.Model.OrdineS
-import com.example.unifood_definitivo.Model.OrdiniSemplificato
 import com.example.unifood_definitivo.R
 
 class ListaOrdiniAdapter(private var ordiniList: List<OrdineS>) : RecyclerView.Adapter<ListaOrdiniAdapter.OrderViewHolder>() {
@@ -30,10 +28,10 @@ class ListaOrdiniAdapter(private var ordiniList: List<OrdineS>) : RecyclerView.A
     override fun getItemCount() = ordiniList.size
 
     inner class OrderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val ordineNumber: TextView = view.findViewById(R.id.ordineNumber)
+        val ordineNumber: TextView = view.findViewById(R.id.idUtente)
         val orario: TextView = view.findViewById(R.id.Orario_ordine)
         val totale: TextView = view.findViewById(R.id.total)
-        val listaprodotti: TextView = view.findViewById(R.id.listaprodotti)
+        val listaprodotti: TextView = view.findViewById(R.id.userName)
     }
 
     fun updateData(newOrdiniList: List<OrdineS>) {

@@ -3,10 +3,8 @@
     import android.view.LayoutInflater
     import android.view.View
     import android.view.ViewGroup
-    import android.widget.Button
     import android.widget.TextView
     import androidx.recyclerview.widget.RecyclerView
-    import com.example.unifood_definitivo.Model.Ordine
     import com.example.unifood_definitivo.Model.OrdineS
     import com.example.unifood_definitivo.R
 
@@ -38,10 +36,10 @@
         inner class OrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val prezzoTextView:TextView=itemView.findViewById(R.id.total)
             //val useridTextView:TextView=itemView.findViewById(R.id.useridView)
-            val numeroOrdineTextView: TextView = itemView.findViewById(R.id.ordineNumber)
+            val numeroOrdineTextView: TextView = itemView.findViewById(R.id.idUtente)
             val orarioOrdineTextView: TextView = itemView.findViewById(R.id.Orario_ordine)
-            val listaProdottiTextView: TextView = itemView.findViewById(R.id.listaprodotti)
-            val button:TextView =itemView.findViewById(R.id.button)
+            val listaProdottiTextView: TextView = itemView.findViewById(R.id.userName)
+            val button:TextView =itemView.findViewById(R.id.cancellautente)
 
             // Inizializza le altre viste del layout dell'elemento
         }
