@@ -26,7 +26,7 @@ class ListaOrdiniAdmin : AppCompatActivity() {
         val databaseReference = FirebaseDatabase.getInstance().getReference("Utenti")
 
         val userList = mutableListOf<User>()
-
+//prova
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 userList.clear()
