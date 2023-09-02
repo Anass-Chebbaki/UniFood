@@ -1,5 +1,7 @@
 package com.example.unifood_definitivo.Model
-
+/*
+* Classe che rappredenta un ordine di tipo semplificato  con tutte le sue informazioni
+*/
 data class OrdineS(
     val numero_ordine: Int=0,
     val userId: String= "",
