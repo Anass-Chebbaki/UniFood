@@ -5,6 +5,7 @@ data class OrdineS(
     val userId: String= "",
     val prezzo: Double=0.0,
     val fascia_oraria: String= "" ,
+    val imgUri : String="",
     val nomiProdotti: List<String> = listOf()
 )
 

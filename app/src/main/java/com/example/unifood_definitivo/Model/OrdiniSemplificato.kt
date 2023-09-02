@@ -28,9 +28,8 @@ class OrdiniSemplificato {
                             nomiProdotti.add("$it x$quantity")
                         }
                     }
-
-
-                    val ordineSemplificato = OrdineS(numeroOrdine, userId, prezzo, fasciaOraria, nomiProdotti)
+                    val imgUri = ordineSnapshot.child("lista_prodotti").children.first().child("product").child("imgUri").getValue(String::class.java) ?: ""
+                    val ordineSemplificato = OrdineS(numeroOrdine, userId, prezzo, fasciaOraria, imgUri,nomiProdotti)
                     ordiniSemplificatiRef.child(ordineSnapshot.key!!).setValue(ordineSemplificato)
                 }
             }
