@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import org.json.JSONArray
 import java.io.Serializable
-/*
+/**
 * Classe che rappredenta un prodotto del carrello con tutte le sue informazioni
 */
 data class CartProduct(

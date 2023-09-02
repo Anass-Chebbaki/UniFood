@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.unifood_definitivo.Model.CartProduct
 import com.example.unifood_definitivo.R
 import com.squareup.picasso.Picasso
-
+/**
+* Adapter per la visualizzazione dei prodotti nel carrello
+ */
 class CartAdapter(private val cartProducts: MutableList<CartProduct>) : RecyclerView.Adapter<CartAdapter.CartItemViewHolder>() {
 
 
@@ -46,20 +48,18 @@ class CartAdapter(private val cartProducts: MutableList<CartProduct>) : Recycler
 
 
     }
+
+    /**
+     * Questa funzione restituisce il numero di elementi nella lista di prodotti nel carrello.
+     */
     override fun getItemCount(): Int {
         return cartProducts.size
     }
 
-    private fun removeItem(position: Int) {
-        cartProducts.removeAt(position)
-        notifyItemRemoved(position)
-    }
-
-    private fun updateQuantity(position: Int, newQuantity: Int) {
-        val updatedItem = cartProducts[position].copy(quantity = newQuantity)
-        cartProducts[position] = updatedItem
-        notifyItemChanged(position)
-    }
+    /**
+     * Questa funzione aggiorna la lista dei prodotti nel carrello con una nuova lista fornita come argomento.
+        newCartItems: La nuova lista di prodotti nel carrello.
+     */
     fun updateCartItems(newCartItems: List<CartProduct>) {
         cartProducts.clear()
         cartProducts.addAll(newCartItems)

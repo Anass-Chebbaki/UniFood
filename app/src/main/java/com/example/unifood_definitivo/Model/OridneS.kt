@@ -1,5 +1,5 @@
 package com.example.unifood_definitivo.Model
-/*
+/**
 * Classe che rappredenta un ordine di tipo semplificato  con tutte le sue informazioni
 */
 data class OrdineS(

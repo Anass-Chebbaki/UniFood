@@ -1,8 +1,7 @@
 package com.example.unifood_definitivo.Model
 
 import java.io.Serializable
-
-/*
+/**
 * Classe che rappredenta un utente con tutte le sue informazioni
 */
 data class User(

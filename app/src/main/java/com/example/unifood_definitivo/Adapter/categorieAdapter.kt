@@ -10,7 +10,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unifood_definitivo.R
 import com.example.unifood_definitivo.Model.Categorie
-
+/**
+ * Adapter per la visualizzazione delle categorie utilizzate per filtrare i prodotti.
+ */
 class CategorieAdapter(private val categorie: List<Categorie>) : RecyclerView.Adapter<CategorieAdapter.ViewHolder>() {
 
     private var itemClickListener: ((String) -> Unit)? = null
@@ -40,8 +42,14 @@ class CategorieAdapter(private val categorie: List<Categorie>) : RecyclerView.Ad
         holder.itemBackground.setBackgroundResource(product.backgroundResId)
     }
 
+    /**
+     *  Questa funzione restituisce il numero di elementi nella lista delle categorie.
+     */
     override fun getItemCount() = categorie.size
 
+    /**
+     * Questa funzione imposta un listener per l'elemento cliccato nella RecyclerView.
+     */
     fun setOnItemClickListener(listener: (String) -> Unit) {
         itemClickListener = listener
     }

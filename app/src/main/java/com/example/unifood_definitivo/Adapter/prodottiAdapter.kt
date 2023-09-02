@@ -18,7 +18,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 
-
+/**
+ * Adapter per la visualizzazione dei prodotti nella mainActivity.
+ */
 
 class ProdottiAdapter(private var prodottiList: ArrayList<Prodotti>) :
     RecyclerView.Adapter<ProdottiAdapter.ViewHolder>() {
@@ -30,6 +32,9 @@ class ProdottiAdapter(private var prodottiList: ArrayList<Prodotti>) :
         return ViewHolder(binding)
     }
 
+    /**
+     * Questa funzione restituisce il numero di elementi nella lista dei prodotti.
+     */
     override fun getItemCount(): Int {
         return prodottiList.size
     }
@@ -54,6 +59,9 @@ class ProdottiAdapter(private var prodottiList: ArrayList<Prodotti>) :
         }
     }
 
+    /**
+     * Questa funzione aggiorna la lista dei prodotti con una nuova lista fornita come argomento e notifica l'adapter dei cambiamenti.
+     */
     fun updateData(newData: List<Prodotti>) {
         prodottiList = ArrayList(newData)
         notifyDataSetChanged()

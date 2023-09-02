@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.unifood_definitivo.Model.OrdineS
 import com.example.unifood_definitivo.R
 
+/**
+ * Adapter utilizzato per la visualizzazione delle informazioni degli ordini effettuati dall'utente
+ */
 class ListaOrdiniAdapter(private var ordiniList: List<OrdineS>) : RecyclerView.Adapter<ListaOrdiniAdapter.OrderViewHolder>() {
 
 
@@ -25,6 +28,9 @@ class ListaOrdiniAdapter(private var ordiniList: List<OrdineS>) : RecyclerView.A
         holder.listaprodotti.text = ordine.nomiProdotti.joinToString(", ")
     }
 
+    /**
+     *  Questa funzione restituisce il numero di elementi nella lista degli ordini.
+     */
     override fun getItemCount() = ordiniList.size
 
     inner class OrderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -34,6 +40,9 @@ class ListaOrdiniAdapter(private var ordiniList: List<OrdineS>) : RecyclerView.A
         val listaprodotti: TextView = view.findViewById(R.id.userName)
     }
 
+    /**
+     * Questa funzione aggiorna i dati dell'adapter con una nuova lista fornita come argomento e notifica l'adapter dei cambiamenti.
+     */
     fun updateData(newOrdiniList: List<OrdineS>) {
         this.ordiniList = newOrdiniList
         notifyDataSetChanged()

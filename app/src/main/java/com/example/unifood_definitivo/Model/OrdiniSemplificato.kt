@@ -4,7 +4,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-/*
+/**
 * Classe che permette di creare una nuova sezione nel database che ci permette di avere delle
 * informazioni sugli ordini più semplificate.
  */

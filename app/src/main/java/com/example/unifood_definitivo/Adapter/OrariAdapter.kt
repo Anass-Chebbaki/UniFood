@@ -7,7 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unifood_definitivo.Model.Orari
 import com.example.unifood_definitivo.R
-
+/**
+ * Adapter per la visualizzazione delle fasce orarie.
+ */
 class OrariAdapter(private var orariList: List<Orari>) : RecyclerView.Adapter<OrariAdapter.ViewHolder>() {
     private var selectedFasciaOraria: String? = null
 
@@ -31,20 +33,24 @@ class OrariAdapter(private var orariList: List<Orari>) : RecyclerView.Adapter<Or
 
     }
 
+    /**
+     * Questa funzione restituisce il numero di elementi nella lista degli orari.
+     */
     override fun getItemCount(): Int {
         return orariList.size
     }
 
-    // Update the adapter's data with a new list
+    /**
+     * Questa funzione aggiorna i dati dell'adapter con una nuova lista fornita come argomento e notifica l'adapter dei cambiamenti.
+     */
     fun updateData(newOrariList: List<Orari>) {
         orariList = newOrariList
         notifyDataSetChanged()
     }
-    fun setSelectedFasciaOraria(fasciaOraria: String) {
-        selectedFasciaOraria = fasciaOraria
-        notifyDataSetChanged()
-    }
 
+    /**
+     * Questa funzione restituisce la fascia oraria selezionata.
+     */
     fun getSelectedFasciaOraria(): String? {
         return selectedFasciaOraria
     }

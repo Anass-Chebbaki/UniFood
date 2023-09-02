@@ -17,7 +17,7 @@ class ListaOrdiniAdmin : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lista_ordini_admin)
+        setContentView(R.layout.activity_gestione_utenti)
         //recyclerviewordini = findViewById(R.id.recyclerviewordini)
         val recyclerView: RecyclerView = findViewById(R.id.recyclerviewlistautenti)// Sostituisci R.id.recyclerView con l'ID corretto della tua RecyclerView nel layout XML
         recyclerView.layoutManager = LinearLayoutManager(this)
