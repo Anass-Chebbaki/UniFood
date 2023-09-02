@@ -10,6 +10,7 @@ import com.example.unifood_definitivo.Model.OrdineS
 import com.google.firebase.database.*
 import com.example.unifood_definitivo.AdminUtility.Admin_OrdiniAdapter
 import com.example.unifood_definitivo.AdminUtility.ListaOrdiniAdmin
+import com.example.unifood_definitivo.Statistiche.Statistiche
 
 class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickListener {
     private lateinit var recyclerView: RecyclerView
@@ -19,6 +20,7 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
     private lateinit var sendButton: TextView
     private lateinit var editText: EditText
     private lateinit var utentiView: ImageView
+    private lateinit var statistiche: ImageView
     private var orderList: MutableList<OrdineS> = mutableListOf()
     private val updateInterval = 24 * 60 * 60 * 1000 // 24 ore in millisecondi
 
@@ -28,6 +30,7 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
         setContentView(R.layout.activity_admin)
         editText = findViewById(R.id.txtprimo)
         sendButton = findViewById(R.id.sendButton)
+        statistiche=findViewById(R.id.statisticheimg)
         recyclerView = findViewById(R.id.recyclerView1)
         utentiView=findViewById<ImageView>(R.id.utentiView)
         layoutManager = LinearLayoutManager(this)
@@ -48,11 +51,18 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
                 // Gestisci eventuali errori
             }
         })
+        // inizializzazione click pulsante utenti activity
         utentiView.setOnClickListener {
             val intent=Intent(this,ListaOrdiniAdmin::class.java)
             adapter.notifyDataSetChanged()
             startActivity(intent)
         }
+        // inizializzazione click pulsante statistiche activity
+        statistiche.setOnClickListener {
+            val intent= Intent(this, Statistiche::class.java)
+            startActivity(intent)
+        }
+        //inizializzazione click pulsante invio primo del giorno
         sendButton.setOnClickListener {
             val userInput = editText.text.toString()
             reference2.setValue(userInput) // Aggiorna il valore nel database
