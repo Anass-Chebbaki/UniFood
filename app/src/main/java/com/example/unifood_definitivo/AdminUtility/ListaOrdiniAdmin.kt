@@ -46,11 +46,14 @@ class ListaOrdiniAdmin : AppCompatActivity() {
                 // Crea e imposta l'adapter della RecyclerView
                 ordiniAdapter = LIstaOrdiniAdapter(userList)
                 recyclerView.adapter = ordiniAdapter
+                ordiniAdapter.notifyDataSetChanged()
             }
+
 
             override fun onCancelled(databaseError: DatabaseError) {
                 // Gestisci l'errore qui se necessario
             }
         })
+
     }
 }

@@ -11,6 +11,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class LIstaOrdiniAdapter(private val userList: MutableList<User>) : RecyclerView.Adapter<LIstaOrdiniAdapter.ViewHolder>() {
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.gestione_utenti_item, parent, false)
         return ViewHolder(view)
@@ -24,7 +25,9 @@ class LIstaOrdiniAdapter(private val userList: MutableList<User>) : RecyclerView
         holder.userSurnameTextView.text = "Cognome: ${user.surname}"
         holder.userMailTextView.text = "Email: ${user.email}"
         holder.idUtenteTextView.text = "User Id: ${user.id}"
-        holder.cancellautente.setOnClickListener { deleteUser(position)
+        holder.cancellautente.setOnClickListener {
+            deleteUser(position)
+            //notifyDataSetChanged()
 
         }
     }
@@ -40,9 +43,16 @@ class LIstaOrdiniAdapter(private val userList: MutableList<User>) : RecyclerView
         val idUtenteTextView: TextView = itemView.findViewById(R.id.idUtente)
         val cancellautente: TextView=itemView.findViewById(R.id.cancellautente)
     }
+    private var isDeleting = false // Variabile di blocco
+
     fun deleteUser(position: Int) {
+        if (isDeleting) {
+            return // Se la cancellazione è in corso, esci senza fare nulla
+        }
+
         val user = userList[position]
         val userId = user.id
+        isDeleting = true // Imposta il flag di cancellazione su true
 
         // Ottieni un riferimento al nodo dell'utente nel database
         val databaseReference = FirebaseDatabase.getInstance().getReference("Utenti").child(userId)
@@ -52,13 +62,18 @@ class LIstaOrdiniAdapter(private val userList: MutableList<User>) : RecyclerView
             if (task.isSuccessful) {
                 // Rimuovi l'utente dalla tua lista dopo che è stato rimosso dal database
                 userList.remove(user)
+                //notifyDataSetChanged()
 
-                // Avvisa l'adapter che i dati sono stati modificati
-                notifyDataSetChanged()
+                // Ripristina il flag di cancellazione a false dopo la rimozione
+                isDeleting = false
             } else {
                 // Gestisci l'errore se la rimozione non ha avuto successo
                 // task.exception contiene l'errore specifico
+
+                // Assicurati di ripristinare il flag anche in caso di errore
+                isDeleting = false
             }
         }
     }
+
 }
