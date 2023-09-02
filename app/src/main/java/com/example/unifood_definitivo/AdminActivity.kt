@@ -1,20 +1,16 @@
 package com.example.unifood_definitivo
 
-import com.example.unifood_definitivo.Model.User
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
-import android.view.View
 import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.loginsignupauth.MainActivity
-import com.example.unifood_definitivo.Model.Ordine
 import com.example.unifood_definitivo.Model.OrdineS
 import com.google.firebase.database.*
 import com.example.unifood_definitivo.AdminUtility.Admin_OrdiniAdapter
+import com.example.unifood_definitivo.AdminUtility.ListaOrdiniAdmin
+
 class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: Admin_OrdiniAdapter
@@ -22,25 +18,24 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
     private lateinit var database: FirebaseDatabase
     private lateinit var sendButton: TextView
     private lateinit var editText: EditText
+    private lateinit var utentiView: ImageView
     private var orderList: MutableList<OrdineS> = mutableListOf()
     private val updateInterval = 24 * 60 * 60 * 1000 // 24 ore in millisecondi
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_admin)
         editText = findViewById(R.id.txtprimo)
         sendButton = findViewById(R.id.sendButton)
         recyclerView = findViewById(R.id.recyclerView1)
+        utentiView=findViewById<ImageView>(R.id.utentiView)
         layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
         val orderList: MutableList<OrdineS> = mutableListOf()
         adapter = Admin_OrdiniAdapter(orderList, this@AdminActivity)
         recyclerView.adapter = adapter
         database = FirebaseDatabase.getInstance()
-
-
         val reference = database.reference.child("OrdiniSemplificati")
         val reference2 = database.reference.child("PrimoDelGiorno")
         reference2.addValueEventListener(object : ValueEventListener {
@@ -53,6 +48,10 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
                 // Gestisci eventuali errori
             }
         })
+        utentiView.setOnClickListener {
+            val intent=Intent(this,ListaOrdiniAdmin::class.java)
+            startActivity(intent)
+        }
         sendButton.setOnClickListener {
             val userInput = editText.text.toString()
             reference2.setValue(userInput) // Aggiorna il valore nel database

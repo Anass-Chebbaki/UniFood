@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -17,14 +15,12 @@ import com.example.unifood_definitivo.*
 import com.example.unifood_definitivo.Adapter.CategorieAdapter
 import com.example.unifood_definitivo.Adapter.ProdottiAdapter
 import com.example.unifood_definitivo.Model.Categorie
-import com.example.unifood_definitivo.Model.OrdiniSemplificato
 import com.example.unifood_definitivo.Model.Prodotti
 import com.example.unifood_definitivo.R
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -68,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         // println("##################usermanager id $UserManager.userId")
         val userId= user?.id
 
-        val imageStatoOrdini = findViewById<ImageView>(R.id.imagestatordini)
+        val imageStatoOrdini = findViewById<ImageView>(R.id.utentiView)
         imageStatoOrdini.setOnClickListener {
             val intent2 = Intent(this, ListaOrdini::class.java)
             intent2.putExtra("userId", userId)
