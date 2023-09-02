@@ -27,7 +27,6 @@ class LIstaOrdiniAdapter(private val userList: MutableList<User>) : RecyclerView
         holder.idUtenteTextView.text = "User Id: ${user.id}"
         holder.cancellautente.setOnClickListener {
             deleteUser(position)
-            //notifyDataSetChanged()
 
         }
     }
@@ -62,7 +61,6 @@ class LIstaOrdiniAdapter(private val userList: MutableList<User>) : RecyclerView
             if (task.isSuccessful) {
                 // Rimuovi l'utente dalla tua lista dopo che è stato rimosso dal database
                 userList.remove(user)
-                //notifyDataSetChanged()
 
                 // Ripristina il flag di cancellazione a false dopo la rimozione
                 isDeleting = false

@@ -29,6 +29,7 @@ class ListaOrdiniAdmin : AppCompatActivity() {
 
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                userList.clear()
                 for (userSnapshot in dataSnapshot.children) {
                     val id = userSnapshot.child("id").getValue(String::class.java) ?: ""
                     // controllo per far si che l'account dell'admin non compaia nella lista
@@ -46,7 +47,7 @@ class ListaOrdiniAdmin : AppCompatActivity() {
                 // Crea e imposta l'adapter della RecyclerView
                 ordiniAdapter = LIstaOrdiniAdapter(userList)
                 recyclerView.adapter = ordiniAdapter
-                ordiniAdapter.notifyDataSetChanged()
+                //ordiniAdapter.notifyDataSetChanged()
             }
 
 

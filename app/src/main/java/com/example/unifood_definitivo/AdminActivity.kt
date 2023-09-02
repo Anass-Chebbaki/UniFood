@@ -50,6 +50,7 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
         })
         utentiView.setOnClickListener {
             val intent=Intent(this,ListaOrdiniAdmin::class.java)
+            adapter.notifyDataSetChanged()
             startActivity(intent)
         }
         sendButton.setOnClickListener {
