@@ -4,13 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unifood_definitivo.Model.User
 import com.example.unifood_definitivo.R
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.FirebaseDatabase
-
 
 class LIstaOrdiniAdapter(private val userList: MutableList<User>) : RecyclerView.Adapter<LIstaOrdiniAdapter.ViewHolder>() {
 
@@ -55,6 +52,7 @@ class LIstaOrdiniAdapter(private val userList: MutableList<User>) : RecyclerView
             if (task.isSuccessful) {
                 // Rimuovi l'utente dalla tua lista dopo che è stato rimosso dal database
                 userList.remove(user)
+
                 // Avvisa l'adapter che i dati sono stati modificati
                 notifyDataSetChanged()
             } else {
