@@ -70,10 +70,10 @@ class Statistiche : AppCompatActivity() {
                 val mediaSpese = totaleSpese / listaOrdini.size
 
                 // Inserisci i valori nelle TextView
-                fasciaOrariaTextView.text = "Fascia Oraria più affollata: $fasciaOrariaPiùAffollata"
+                fasciaOrariaTextView.text = "Orario più affollato: $fasciaOrariaPiùAffollata"
                 totaleOrdiniTextView.text = "Totale Ordini: ${listaOrdini.size}"
                 prodottoFrequenteTextView.text = "Prodotto più ordinato: $prodottoFrequente"
-                mediaSpeseTextView.text = "Media delle spese: ${String.format("%.2f", mediaSpese)} €"
+                mediaSpeseTextView.text = "Spese medie: ${String.format("%.2f", mediaSpese)} €"
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

@@ -4,82 +4,145 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Statistiche.Statistiche"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".Statistiche.Statistiche">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView12"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Statistiche"
-            android:textAlignment="center"
-            android:textColor="@color/red"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/fasciaoraria"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="89dp"
-        android:text="Fascia Oraria più affllata:"
-        android:textAlignment="center"
-        android:textColor="@color/red"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/cibo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="54dp"
-        android:text="Cibo più venduto:"
-        android:textAlignment="center"
-        android:textColor="@color/red"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fasciaoraria" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@drawable/red_light_banner_profile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/totale"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="38dp"
-        android:text="Tototale Ordini:"
-        android:textAlignment="center"
-        android:textColor="@color/red"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cibo" />
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/logo" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/media"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="56dp"
-        android:text="Spesa Media:"
-        android:textAlignment="center"
-        android:textColor="@color/red"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/totale" />
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="35dp"
+                    android:background="@drawable/mini_redbutton_cestino"
+                    android:gravity="center"
+                    android:text="STATISTICHE"
+                    android:textColor="@color/white"
+                    android:textSize="28sp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+                    app:layout_constraintStart_toStartOf="@+id/linearLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+                    tools:elevation="10dp" />
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginBottom="35dp"
+                    android:background="@drawable/statystics_background"
+                    android:elevation="3dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView17">
+
+                    <TextView
+                        android:id="@+id/fasciaoraria"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="35dp"
+                        android:background="@drawable/white_border2"
+                        android:drawableLeft="@drawable/icons8_time_33__1_"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_vertical"
+                        android:padding="8dp"
+                        android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/cibo"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="35dp"
+                        android:background="@drawable/white_border2"
+                        android:drawableLeft="@drawable/icons8_burger_33"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_vertical"
+                        android:padding="8dp"
+                        android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/totale"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="35dp"
+                        android:background="@drawable/white_border2"
+                        android:drawableLeft="@drawable/icons8_clipboard_33"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_vertical"
+                        android:padding="8dp"
+                        android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/media"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="35dp"
+                        android:background="@drawable/white_border2"
+                        android:drawableLeft="@drawable/icons8_euro_33__1_"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_vertical"
+                        android:padding="8dp"
+                        android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
