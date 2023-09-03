@@ -18,7 +18,7 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".AdminUtility.ListaOrdiniAdmin"
+            android:name=".AdminUtility.ListaUtentiAdmin"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity

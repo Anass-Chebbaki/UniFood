@@ -16,7 +16,7 @@ class Profilo : AppCompatActivity() {
     private lateinit var passwordEditText: EditText
     private lateinit var confirmEditText: EditText
     private lateinit var balanceEditText: EditText
-    private lateinit var helloText :TextView
+    private lateinit var helloText: TextView
     private var isEditMode: Boolean = false // Variabile di stato per la modalità di modifica
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,6 +91,7 @@ class Profilo : AppCompatActivity() {
         confirmEditText.isEnabled = isEditMode
         balanceEditText.isEnabled = isEditMode
     }
+
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
@@ -104,24 +105,36 @@ class Profilo : AppCompatActivity() {
         val surname = surnameEditText.text.toString()
         val email = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
-        val balance = balanceEditText.text.toString().toDouble()
+        val confirmPassword = confirmEditText.text.toString()
+        val balanceString = balanceEditText.text.toString()
+        if (password != confirmPassword) {
+            showToast("Le password inserite sono diverse.")
+            return
+        }
 
-        val userUpdates = hashMapOf<String, Any>(
-            "name" to name,
-            "surname" to surname,
-            "email" to email,
-            "password" to password,
-            "initialBalance" to balance
-        )
+        try {
+            val balance = balanceString.toDouble()
 
-        usersRef.updateChildren(userUpdates)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    // Aggiornamento completato con successo
-                    // Puoi mostrare un messaggio o effettuare altre azioni
-                } else {
-                    // Gestisci l'errore nell'aggiornamento
+            val userUpdates = hashMapOf<String, Any>(
+                "name" to name,
+                "surname" to surname,
+                "email" to email,
+                "password" to password,
+                "initialBalance" to balance
+            )
+
+            usersRef.updateChildren(userUpdates)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        // Aggiornamento completato con successo
+                        // Puoi mostrare un messaggio o effettuare altre azioni
+                    } else {
+                        // Gestisci l'errore nell'aggiornamento
+                    }
                 }
-            }
+        } catch (e: NumberFormatException) {
+            // Gestisci il caso in cui la conversione non è riuscita
+            showToast("Inserire un saldo valido")
+        }
     }
 }

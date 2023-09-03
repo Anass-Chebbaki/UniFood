@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.unifood_definitivo.Model.OrdineS
 import com.google.firebase.database.*
 import com.example.unifood_definitivo.AdminUtility.Admin_OrdiniAdapter
-import com.example.unifood_definitivo.AdminUtility.ListaOrdiniAdmin
+import com.example.unifood_definitivo.AdminUtility.ListaUtentiAdmin
 import com.example.unifood_definitivo.Statistiche.Statistiche
 
 class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickListener {
@@ -53,7 +53,7 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
         })
         // inizializzazione click pulsante utenti activity
         utentiView.setOnClickListener {
-            val intent=Intent(this,ListaOrdiniAdmin::class.java)
+            val intent=Intent(this,ListaUtentiAdmin::class.java)
             adapter.notifyDataSetChanged()
             startActivity(intent)
         }

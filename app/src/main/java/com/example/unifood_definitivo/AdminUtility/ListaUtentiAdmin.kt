@@ -11,9 +11,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class ListaOrdiniAdmin : AppCompatActivity() {
+class ListaUtentiAdmin : AppCompatActivity() {
    // private lateinit var recyclerviewordini: RecyclerView
-    private lateinit var ordiniAdapter: LIstaOrdiniAdapter // Assicurati di aver creato l'adapter come spiegato in precedenza
+    private lateinit var ordiniAdapter: LIstaUtentiAdapter // Assicurati di aver creato l'adapter come spiegato in precedenza
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +45,7 @@ class ListaOrdiniAdmin : AppCompatActivity() {
                 }
 
                 // Crea e imposta l'adapter della RecyclerView
-                ordiniAdapter = LIstaOrdiniAdapter(userList)
+                ordiniAdapter = LIstaUtentiAdapter(userList)
                 recyclerView.adapter = ordiniAdapter
                 //ordiniAdapter.notifyDataSetChanged()
             }

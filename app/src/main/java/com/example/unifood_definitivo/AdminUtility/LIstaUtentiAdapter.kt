@@ -9,7 +9,7 @@ import com.example.unifood_definitivo.Model.User
 import com.example.unifood_definitivo.R
 import com.google.firebase.database.FirebaseDatabase
 
-class LIstaOrdiniAdapter(private val userList: MutableList<User>) : RecyclerView.Adapter<LIstaOrdiniAdapter.ViewHolder>() {
+class LIstaUtentiAdapter(private val userList: MutableList<User>) : RecyclerView.Adapter<LIstaUtentiAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
