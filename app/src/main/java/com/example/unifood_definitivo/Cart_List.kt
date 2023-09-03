@@ -226,7 +226,7 @@ class Cart_List : AppCompatActivity() {
   * Gestisce il carrello degli acquisti degli utenti.
   */
  object CartManager {
-  private val userCarts = HashMap<String, ArrayList<CartProduct>>()
+  val userCarts = HashMap<String, ArrayList<CartProduct>>()
   /**
    * Aggiunge un prodotto al carrello di un utente.
    * @param userId ID dell'utente a cui aggiungere il prodotto.
