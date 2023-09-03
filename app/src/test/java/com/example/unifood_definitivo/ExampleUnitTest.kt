@@ -1,5 +1,7 @@
 package com.example.unifood_definitivo
 
+import com.example.loginsignupauth.LoginActivity
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -9,9 +11,13 @@ import org.junit.Assert.*
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class ExampleUnitTest {
+class LoginTest{
+    private val repository: LoginActivity= LoginActivity()
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun signIn_success() = runBlocking {
+        val email = "mariorossi@gmail.com"
+        val password = "mariorossi123"
+        //fkfkkd
+
     }
 }
