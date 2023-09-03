@@ -6,7 +6,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:layout_height="match_parent"
-    tools:context="com.example.loginsignupauth.MainActivity">
+    tools:context=".User.View.MainActivity">
 
     <ScrollView
         android:id="@+id/scrollview"

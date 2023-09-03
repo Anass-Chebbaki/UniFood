@@ -14,35 +14,35 @@
         android:theme="@style/Theme.UniFood_Definitivo"
         tools:targetApi="31">
         <activity
-            android:name=".Statistiche.Statistiche"
+            android:name=".Admin.View.Statistiche"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".AdminUtility.ListaUtentiAdmin"
+            android:name=".Admin.View.ListaUtentiAdmin"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Profilo"
+            android:name=".User.View.Profilo"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ListaOrdini"
+            android:name=".User.View.ListaOrdini"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Cart_List"
+            android:name=".User.View.Cart_List"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Show_details"
+            android:name=".User.View.Show_details"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".AdminActivity"
+            android:name=".Admin.View.AdminActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="com.example.loginsignupauth.MainActivity"
+            android:name=".User.View.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity

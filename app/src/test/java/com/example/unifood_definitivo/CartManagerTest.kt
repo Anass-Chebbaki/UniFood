@@ -1,6 +1,7 @@
 package com.example.unifood_definitivo
 
-import com.example.unifood_definitivo.Model.Prodotti
+import com.example.unifood_definitivo.User.Model.Prodotti
+import com.example.unifood_definitivo.User.View.Cart_List
 import org.junit.Test
 
 import org.junit.Assert.*

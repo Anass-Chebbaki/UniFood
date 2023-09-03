@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">UniFood_Definitivo</string>
+    <string name="app_name">UniFood</string>
     <string name="error">Errore</string>
     <string name="email_already_registered_message">Sei già registrato. Accedi.</string>
     <string name="ok">OK</string>
