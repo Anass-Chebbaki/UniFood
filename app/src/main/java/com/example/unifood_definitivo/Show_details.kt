@@ -45,11 +45,6 @@ class Show_details : AppCompatActivity() {
                 intent.putExtra("quantity", quantity)
                 intent.putExtra("imgUri",product.imgUri2)
                 Toast.makeText(this, "Elemento aggiunto al carrello", Toast.LENGTH_SHORT).show()
-                println("Dati inviati nell'Intent:")
-                println("Product: $product")
-                println("Quantity: $quantity")
-                println("ImgUri: ${product.imgUri2}")
-
                 if (userId != null) {
                     Cart_List.CartManager.addToCart(userId,product, quantity, product.imgUri2)
                 }
