@@ -8,7 +8,11 @@ import android.widget.Toast
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.database.*
 import java.util.*
-
+/**
+ * Activity per la visualizzazione e la modifica del profilo utente.
+ * Gli utenti possono vedere e, se necessario, modificare le proprie informazioni personali,
+ * tra cui nome, cognome, email, password e saldo.
+ */
 class Profilo : AppCompatActivity() {
     private lateinit var nameEditText: EditText
     private lateinit var surnameEditText: EditText
@@ -83,6 +87,9 @@ class Profilo : AppCompatActivity() {
         updateEditMode()
     }
 
+    /**
+     * Abilita o disabilita la modalità di modifica, consentendo all'utente di modificare le informazioni.
+     */
     private fun updateEditMode() {
         nameEditText.isEnabled = isEditMode
         surnameEditText.isEnabled = isEditMode
@@ -91,12 +98,15 @@ class Profilo : AppCompatActivity() {
         confirmEditText.isEnabled = isEditMode
         balanceEditText.isEnabled = isEditMode
     }
-
+    /**
+     * Mostra un messaggio toast all'utente.
+     */
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
-
-
+    /**
+     * Aggiorna le informazioni utente nel database in base alle modifiche apportate dall'utente.
+     */
     private fun updateUserInfo(userId: String) {
         val database = FirebaseDatabase.getInstance()
         val usersRef: DatabaseReference = database.reference.child("Utenti").child(userId)
@@ -126,14 +136,10 @@ class Profilo : AppCompatActivity() {
             usersRef.updateChildren(userUpdates)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        // Aggiornamento completato con successo
-                        // Puoi mostrare un messaggio o effettuare altre azioni
                     } else {
-                        // Gestisci l'errore nell'aggiornamento
                     }
                 }
         } catch (e: NumberFormatException) {
-            // Gestisci il caso in cui la conversione non è riuscita
             showToast("Inserire un saldo valido")
         }
     }

@@ -9,7 +9,11 @@ import android.widget.Toast
 import com.example.unifood_definitivo.Model.Prodotti
 import com.example.unifood_definitivo.Model.User
 import com.squareup.picasso.Picasso
-
+/**
+ * Activity per visualizzare i dettagli di un prodotto selezionato e aggiungerlo al carrello.
+ * Gli utenti possono vedere il nome, il prezzo e la descrizione del prodotto,
+ * oltre a modificarne la quantità da aggiungere al carrello.
+ */
 class Show_details : AppCompatActivity() {
     private lateinit var quantityTextView: TextView
     private var quantity: Int = 1 // Initial quantity value
@@ -21,18 +25,13 @@ class Show_details : AppCompatActivity() {
         val product = intent.getSerializableExtra("product") as? Prodotti
         val userId = intent.getStringExtra("userId")
         if (product != null) {
-            // Populate your layout with the details of the selected product
+            // Popolare il layout con i dettagli del prodotto selezionato
             val productNameTextView = findViewById<TextView>(R.id.titleTxt)
             val productPriceTextView = findViewById<TextView>(R.id.priceTxt)
             val productDescriptionTextView = findViewById<TextView>(R.id.ingredientsTxt)
-            // ... (other views you want to populate)
-
             productNameTextView.text = product.nome_prodotto
             productPriceTextView.text = "${product.prezzo.toString()}€"
             productDescriptionTextView.text = product.ingredienti.toString()
-
-
-            // Load and display the image using Picasso or any other image loading library
             val productImageView = findViewById<ImageView>(R.id.foodPic)
             product.imgUri2?.let {
                 Picasso.get().load(it).into(productImageView)
@@ -54,11 +53,6 @@ class Show_details : AppCompatActivity() {
                 if (userId != null) {
                     Cart_List.CartManager.addToCart(userId,product, quantity, product.imgUri2)
                 }
-
-
-               // startActivity(intent)
-
-
             }
             quantityTextView = findViewById(R.id.quantityTxt)
             quantityTextView.text = quantity.toString()
@@ -74,24 +68,29 @@ class Show_details : AppCompatActivity() {
                 decreaseQuantity()
             }
         } else {
-            // Handle the case where the product data is missing or invalid
-            // You might want to show an error message or return to the previous screen
         }
 
 
     }
+    /**
+     * Incrementa la quantità selezionata.
+     */
     private fun increaseQuantity() {
         quantity++
         updateQuantity()
     }
-
+    /**
+     * Decrementa la quantità selezionata, se possibile.
+     */
     private fun decreaseQuantity() {
         if (quantity > 1) {
             quantity--
             updateQuantity()
         }
     }
-
+    /**
+     * Aggiorna la visualizzazione della quantità selezionata.
+     */
     private fun updateQuantity() {
         quantityTextView.text = quantity.toString()
     }

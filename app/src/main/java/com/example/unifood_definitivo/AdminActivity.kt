@@ -11,7 +11,10 @@ import com.google.firebase.database.*
 import com.example.unifood_definitivo.AdminUtility.Admin_OrdiniAdapter
 import com.example.unifood_definitivo.AdminUtility.ListaUtentiAdmin
 import com.example.unifood_definitivo.Statistiche.Statistiche
-
+/**
+ * Classe di attività principale per l'utente con ruolo di amministratore.
+ * Gestisce l'elenco degli ordini, l'invio del "primo del giorno" e fornisce accesso alle statistiche e alla gestione degli utenti.
+ */
 class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: Admin_OrdiniAdapter
@@ -22,8 +25,6 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
     private lateinit var utentiView: ImageView
     private lateinit var statistiche: ImageView
     private var orderList: MutableList<OrdineS> = mutableListOf()
-    private val updateInterval = 24 * 60 * 60 * 1000 // 24 ore in millisecondi
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +49,6 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Gestisci eventuali errori
             }
         })
         // inizializzazione click pulsante utenti activity
@@ -85,7 +85,11 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
             }
         })
     }
-
+    /**
+     * Gestisce l'eliminazione di un ordine specifico dal database e dalla RecyclerView.
+     *
+     * @param ordine L'oggetto OrdineS da eliminare.
+     */
     override fun onDeleteClick(ordine: OrdineS) {
         val orderNumber = ordine.numero_ordine
         // Remove the item from the RecyclerView
@@ -94,7 +98,7 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
             orderList.removeAt(position)
             adapter.notifyItemRemoved(position)
         }
-        // Remove all order data for the specific order number from the "OrdiniSemplificati" section
+        // Rimuovi tutti i dati dell'ordine specifico dalla sezione "OrdiniSemplificati" del database Firebase
         val database = FirebaseDatabase.getInstance()
         val semplificatiReference = database.reference.child("OrdiniSemplificati")
         semplificatiReference.orderByChild("numero_ordine").equalTo(orderNumber.toDouble())
@@ -112,7 +116,7 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
                     // Handle any errors
                 }
             })
-        // Remove all order data for the specific order number from the "Ordini" section
+        // Rimuovi tutti i dati dell'ordine specifico dalla sezione "Ordini" del database Firebase
         val ordiniReference = database.reference.child("Ordini")
         ordiniReference.orderByChild("numero_ordine").equalTo(orderNumber.toDouble())
             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -126,7 +130,6 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-                    // Handle any errors
                 }
             })
     }

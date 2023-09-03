@@ -14,7 +14,11 @@ import com.google.android.material.button.MaterialButton
 
 
 import com.google.firebase.database.*
-
+/**
+ * Activity per la registrazione di un nuovo utente.
+ * Gli utenti possono inserire le proprie informazioni personali e registrarsi
+ * per accedere all'applicazione.
+ */
 class SignupActivity : AppCompatActivity() {
     private lateinit var nameEditText: EditText
     private lateinit var surnameEditText: EditText
@@ -91,14 +95,18 @@ class SignupActivity : AppCompatActivity() {
             openLoginActivity()
         }
     }
-
+    /**
+     * Genera un ID casuale di lunghezza specificata.
+     */
     private fun generateRandomId(length: Int): String {
         val charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         return (1..length)
             .map { charset.random() }
             .joinToString("")
     }
-
+    /**
+     * Mostra un dialogo di errore se l'indirizzo email è già registrato.
+     */
     private fun showEmailAlreadyRegisteredDialog() {
         AlertDialog.Builder(this)
             .setTitle(R.string.error)
@@ -108,7 +116,9 @@ class SignupActivity : AppCompatActivity() {
             }
             .show()
     }
-
+    /**
+     * Mostra un dialogo di errore se la password è troppo corta.
+     */
     private fun showPasswordTooShortDialog() {
         AlertDialog.Builder(this)
             .setTitle(R.string.error)
@@ -118,7 +128,9 @@ class SignupActivity : AppCompatActivity() {
             }
             .show()
     }
-
+    /**
+     * Mostra un dialogo di errore se si verifica un errore nel database.
+     */
     private fun showDatabaseErrorDialog() {
         AlertDialog.Builder(this)
             .setTitle(R.string.error)
@@ -128,18 +140,24 @@ class SignupActivity : AppCompatActivity() {
             }
             .show()
     }
-
+    /**
+     * Reindirizza l'utente alla schermata di login dopo la registrazione.
+     */
     private fun redirectToLoginScreen() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish() // Opzionale: chiude l'attività corrente
     }
-
+    /**
+     * Apre l'activity di login.
+     */
     private fun openLoginActivity() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
-
+    /**
+     * Mostra un dialogo di errore se le password non corrispondono.
+     */
     private fun showPasswordsNotMatchingDialog() {
         AlertDialog.Builder(this)
             .setTitle(R.string.error)

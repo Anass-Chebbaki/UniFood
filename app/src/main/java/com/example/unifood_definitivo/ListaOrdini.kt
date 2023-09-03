@@ -13,7 +13,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-
+/**
+ * Questa classe gestisce l'attività che visualizza la lista degli ordini di un utente.
+ * Mostra gli ordini dell'utente corrente recuperati dal database Firebase.
+ */
 class ListaOrdini : AppCompatActivity() {
 
     private lateinit var listaOrdiniAdapter: ListaOrdiniAdapter
@@ -22,16 +25,16 @@ class ListaOrdini : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_ordini)
-
+        // Ottieni l'ID dell'utente dall'Intent
         val userId = intent.getStringExtra("userId")
-
+        // Inizializza la RecyclerView e l'adapter per visualizzare gli ordini
         recyclerView = findViewById(R.id.recyclerviewordini)
         recyclerView.layoutManager = LinearLayoutManager(this)
         listaOrdiniAdapter = ListaOrdiniAdapter(ArrayList())
         recyclerView.adapter = listaOrdiniAdapter
 
         val ordiniRef = FirebaseDatabase.getInstance().getReference("OrdiniSemplificati")
-
+        // Recupera gli ordini dell'utente corrente dal database e aggiorna la RecyclerView
         ordiniRef.orderByChild("userId").equalTo(userId)
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {

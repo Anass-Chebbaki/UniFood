@@ -23,7 +23,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlin.collections.ArrayList
 
-
+/**
+ * Activity principale dell'applicazione, che mostra una lista di prodotti suddivisi per categorie.
+ * Gli utenti possono effettuare la ricerca di prodotti, visualizzare dettagli e aggiungere prodotti al carrello.
+ */
 class MainActivity : AppCompatActivity() {
     private var selectedCategory: String? = null
     private lateinit var firebaseAuth: FirebaseAuth
@@ -42,10 +45,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         textView = findViewById(R.id.textView5)
         database = FirebaseDatabase.getInstance()
-
         // Riferimento al nodo "PrimoDelGiorno"
         val reference = database.reference.child("PrimoDelGiorno")
-
         reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val value = snapshot.getValue(String::class.java)
@@ -56,12 +57,7 @@ class MainActivity : AppCompatActivity() {
                 // Gestisci eventuali errori
             }
         })
-
-
-
         val user = intent.getSerializableExtra("user") as? User
-
-        // println("##################usermanager id $UserManager.userId")
         val userId= user?.id
 
         val imageStatoOrdini = findViewById<ImageView>(R.id.utentiView)
@@ -80,8 +76,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-        //UserManager.userId = userId
         val balance = user?.initialBalance
         if (user != null) {
             val userName = user.name
@@ -202,6 +196,9 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+    /**
+     * Filtra i prodotti in base alla categoria selezionata o mostra tutti i prodotti se nessuna categoria è selezionata.
+     */
     private fun filterProductsByCategory(category: String?) {
         val filteredProducts = if (category.isNullOrEmpty()) {
             fullProductList // Mostra tutti i prodotti se nessuna categoria è selezionata
@@ -210,9 +207,5 @@ class MainActivity : AppCompatActivity() {
         }
         prodottiAdapter.updateData(filteredProducts)
     }
-
-    /*object UserManager {
-        var userId: String? = null
-    }*/
 
 }

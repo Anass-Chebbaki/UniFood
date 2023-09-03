@@ -9,7 +9,11 @@ import com.example.unifood_definitivo.Model.OrdiniSemplificato
 import com.example.unifood_definitivo.R
 import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
-
+/**
+ * Activity per la visualizzazione delle statistiche relative agli ordini,
+ * inclusa la fascia oraria più affollata, il totale degli ordini, il prodotto
+ * più frequentemente ordinato e la media delle spese.
+ */
 class Statistiche : AppCompatActivity() {
 
     private lateinit var databaseReference: DatabaseReference
@@ -78,30 +82,26 @@ class Statistiche : AppCompatActivity() {
         })
     }
 
+    /**
+     * Calcola la fascia oraria più affollata tra gli ordini forniti.
+     *
+     * @param listaOrdini La lista degli ordini da analizzare.
+     * @return La fascia oraria più affollata.
+     */
     private fun calcolaFasciaOrariaPiùAffollata(listaOrdini: List<OrdineS>): String {
-        // Implementa il tuo algoritmo per calcolare la fascia oraria più affollata qui
-        // Puoi utilizzare un HashMap per contare il numero di ordini per ogni fascia oraria
-        // E restituire la fascia con il massimo valore
-        // Ad esempio, puoi fare un ciclo sulla lista degli ordini e aggiornare il conteggio per ogni fascia oraria
-        // Quindi trova la fascia con il conteggio massimo e restituiscila
-
         val fasciaOrariaConteggio = HashMap<String, Int>()
-
         for (ordine in listaOrdini) {
             val fasciaOraria = ordine.fascia_oraria
             fasciaOrariaConteggio[fasciaOraria] = fasciaOrariaConteggio.getOrDefault(fasciaOraria, 0) + 1
         }
-
         var fasciaOrariaPiùAffollata = ""
         var maxConteggio = 0
-
         for ((fasciaOraria, conteggio) in fasciaOrariaConteggio) {
             if (conteggio > maxConteggio) {
                 maxConteggio = conteggio
                 fasciaOrariaPiùAffollata = fasciaOraria
             }
         }
-
         return fasciaOrariaPiùAffollata
     }
 

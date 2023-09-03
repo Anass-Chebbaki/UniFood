@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.unifood_definitivo.Model.User
 import com.example.unifood_definitivo.R
 import com.google.firebase.database.FirebaseDatabase
-
+/**
+ * Adapter per la visualizzazione degli utenti nella schermata dell admin
+ */
 class LIstaUtentiAdapter(private val userList: MutableList<User>) : RecyclerView.Adapter<LIstaUtentiAdapter.ViewHolder>() {
 
 
@@ -30,7 +32,9 @@ class LIstaUtentiAdapter(private val userList: MutableList<User>) : RecyclerView
 
         }
     }
-
+    /**
+     *  Questa funzione restituisce il numero di elementi nella lista degli utentu.
+     */
     override fun getItemCount(): Int {
         return userList.size
     }
@@ -44,6 +48,11 @@ class LIstaUtentiAdapter(private val userList: MutableList<User>) : RecyclerView
     }
     private var isDeleting = false // Variabile di blocco
 
+    /**
+     * Elimina un utente dalla lista e dal database Firebase.
+     *
+     * La posizione dell'utente nella lista da eliminare.
+     */
     fun deleteUser(position: Int) {
         if (isDeleting) {
             return // Se la cancellazione è in corso, esci senza fare nulla
@@ -65,10 +74,7 @@ class LIstaUtentiAdapter(private val userList: MutableList<User>) : RecyclerView
                 // Ripristina il flag di cancellazione a false dopo la rimozione
                 isDeleting = false
             } else {
-                // Gestisci l'errore se la rimozione non ha avuto successo
-                // task.exception contiene l'errore specifico
-
-                // Assicurati di ripristinare il flag anche in caso di errore
+                //  ripristina il flag
                 isDeleting = false
             }
         }

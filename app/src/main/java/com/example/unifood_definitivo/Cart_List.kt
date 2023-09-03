@@ -13,7 +13,10 @@ import com.example.unifood_definitivo.Adapter.CartAdapter
 import com.example.unifood_definitivo.Adapter.OrariAdapter
 import com.example.unifood_definitivo.Model.*
 import com.google.firebase.database.*
-
+/**
+ * Questa classe gestisce l'attività del carrello degli acquisti dell'utente. Permette agli utenti
+ * di visualizzare i prodotti nel carrello, modificarli e completare l'ordine.
+ */
 class Cart_List : AppCompatActivity() {
  private val userCarts = HashMap<String, ArrayList<CartProduct>>()
  private val savedCartItems = ArrayList<CartProduct>()
@@ -85,6 +88,9 @@ class Cart_List : AppCompatActivity() {
   }
 
  }
+ /**
+  * Calcola e visualizza il totale dell'ordine, includendo il totale dei prodotti e la commissione.
+  */
  private fun calculateAndDisplayTotal() {
   val subtotal = calculateSubtotal(cartItems)
   val commission = 2.0
@@ -100,7 +106,11 @@ class Cart_List : AppCompatActivity() {
   commissionView.text = " €$commission"
   totalView.text = "$total"
  }
-
+ /**
+  * Calcola il totale dei prodotti nel carrello.
+  * @param userCart Lista dei prodotti nel carrello dell'utente
+  * @return Il totale dei prodotti nel carrello
+  */
  private fun calculateSubtotal(userCart: ArrayList<CartProduct>): Double {
   var subtotal = 0.0
   for (cartItem in userCart) {
@@ -108,6 +118,14 @@ class Cart_List : AppCompatActivity() {
   }
   return subtotal
  }
+ /**
+  * Crea un nuovo ordine e lo invia al database Firebase. Aggiorna anche il saldo dell'utente e la disponibilità
+  * della fascia oraria selezionata.
+  * @param fasciaOraria Fascia oraria selezionata per l'ordine
+  * @param userId ID dell'utente che effettua l'ordine
+  * @param total Totale dell'ordine, comprensivo della commissione
+  * @param balance Saldo dell'utente
+  */
  private fun creaEInviaOrdine(fasciaOraria: String, userId: String, total: Double, balance: Double) {
   val numeroOrdine = (1..1000).random()
   val cartItems = cartItems
@@ -178,7 +196,9 @@ class Cart_List : AppCompatActivity() {
 
   orariQuery.addListenerForSingleValueEvent(orariListener)
  }
-
+ /**
+  * Recupera i dati relativi agli orari disponibili dal database Firebase e li aggiorna nell'adapter.
+  */
  private fun fetchOrariData() {
   val orariList = ArrayList<Orari>() // Create a list to store fetched data
   database.addValueEventListener(object : ValueEventListener {
@@ -202,20 +222,36 @@ class Cart_List : AppCompatActivity() {
  }
 
 
-
+ /**
+  * Gestisce il carrello degli acquisti degli utenti.
+  */
  object CartManager {
   private val userCarts = HashMap<String, ArrayList<CartProduct>>()
-
+  /**
+   * Aggiunge un prodotto al carrello di un utente.
+   * @param userId ID dell'utente a cui aggiungere il prodotto.
+   * @param product Prodotto da aggiungere al carrello.
+   * @param quantity Quantità del prodotto da aggiungere.
+   * @param imgUri URL dell'immagine del prodotto.
+   */
   fun addToCart(userId: String, product: Prodotti, quantity: Int, imgUri: String?) {
    val userCart = userCarts.getOrPut(userId) { ArrayList() }
    val cartItem = CartProduct(product, quantity, imgUri, product.prezzo?.times(quantity))
    cartItem.total = product.prezzo?.times(quantity)
    userCart.add(cartItem)
   }
-
+  /**
+   * Ottiene tutti gli elementi presenti nel carrello di un utente.
+   * @param userId ID dell'utente di cui ottenere il carrello.
+   * @return Lista di elementi nel carrello dell'utente o una lista vuota se il carrello è vuoto o non esiste.
+   */
   fun getCartItems(userId: String): List<CartProduct> {
    return userCarts[userId] ?: emptyList()
   }
+  /**
+   * Svuota il carrello di un utente.
+   * @param userId ID dell'utente di cui svuotare il carrello.
+   */
   fun clearCart(userId: String) {
    userCarts.remove(userId)
   }

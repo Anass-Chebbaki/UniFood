@@ -7,7 +7,9 @@
     import androidx.recyclerview.widget.RecyclerView
     import com.example.unifood_definitivo.Model.OrdineS
     import com.example.unifood_definitivo.R
-
+    /**
+     * Adapter per la visualizzazione degli ordini nella schermata dell admin
+     */
     class Admin_OrdiniAdapter(private val orderList: List<OrdineS>, private val onDeleteClickListener: OnDeleteClickListener): RecyclerView.Adapter<Admin_OrdiniAdapter.OrderViewHolder>() {
         interface OnDeleteClickListener {
             fun onDeleteClick(ordine: OrdineS)
@@ -43,6 +45,9 @@
 
             // Inizializza le altre viste del layout dell'elemento
         }
+        /**
+         *  Questa funzione restituisce il numero di elementi nella lista degli ordini.
+         */
         override fun getItemCount(): Int {
             return orderList.size
         }
