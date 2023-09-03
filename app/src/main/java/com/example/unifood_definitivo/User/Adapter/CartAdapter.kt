@@ -13,8 +13,6 @@ import com.squareup.picasso.Picasso
 * Adapter per la visualizzazione dei prodotti nel carrello
  */
 class CartAdapter(private val cartProducts: MutableList<CartProduct>) : RecyclerView.Adapter<CartAdapter.CartItemViewHolder>() {
-
-
     class CartItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var currentPosition: Int = 0
         var currentQuantity: Int = 0
