@@ -23,6 +23,7 @@ class LIstaUtentiAdapter(private val userList: MutableList<User>) : RecyclerView
         val user = userList[position]
 
         // Popola le viste nel layout XML con i dati dell'utente
+
         holder.userNameTextView.text = "Nome: ${user.name}"
         holder.userSurnameTextView.text = "Cognome: ${user.surname}"
         holder.userMailTextView.text = "Email: ${user.email}"

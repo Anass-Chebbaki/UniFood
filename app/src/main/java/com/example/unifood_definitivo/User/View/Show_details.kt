@@ -24,6 +24,7 @@ class Show_details : AppCompatActivity() {
         val product = intent.getSerializableExtra("product") as? Prodotti
         val userId = intent.getStringExtra("userId")
         if (product != null) {
+
             // Popolare il layout con i dettagli del prodotto selezionato
             val productNameTextView = findViewById<TextView>(R.id.titleTxt)
             val productPriceTextView = findViewById<TextView>(R.id.priceTxt)
@@ -35,9 +36,9 @@ class Show_details : AppCompatActivity() {
             product.imgUri2?.let {
                 Picasso.get().load(it).into(productImageView)
             }
-            val cardBtn=findViewById<TextView>(R.id.card_btn)
             val addToCartButton = findViewById<TextView>(R.id.addToCardBtn)
             addToCartButton.setOnClickListener {
+
                 // Creazione dell'intent e passaggio dei dati
                 val intent = Intent(this, Cart_List::class.java)
                 intent.putExtra("product", product)

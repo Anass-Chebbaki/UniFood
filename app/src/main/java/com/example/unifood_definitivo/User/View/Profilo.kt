@@ -37,6 +37,7 @@ class Profilo : AppCompatActivity() {
         passwordEditText = findViewById(R.id.password)
         confirmEditText = findViewById(R.id.confirm)
         balanceEditText = findViewById(R.id.balance)
+
         // Trova la TextView "Modifica" nel layout
         val editTextView = findViewById<TextView>(R.id.modificaView)
         editTextView.setOnClickListener {

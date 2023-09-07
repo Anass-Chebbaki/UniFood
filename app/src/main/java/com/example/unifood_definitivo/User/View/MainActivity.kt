@@ -39,7 +39,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         textView = findViewById(R.id.textView5)
         database = FirebaseDatabase.getInstance()
-        // Riferimento al nodo "PrimoDelGiorno"
+
+        // Riferimento al nodo del DB: "PrimoDelGiorno"
         val reference = database.reference.child("PrimoDelGiorno")
         reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -89,6 +90,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("userId", userId)
             startActivity(intent)
         }
+
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         val categories = listOf(
             Categorie("Pizza", R.drawable.cat_1, R.drawable.cat_background1),
@@ -103,13 +105,16 @@ class MainActivity : AppCompatActivity() {
         recyclerView1.adapter = categorieAdapter
         categorieAdapter.setOnItemClickListener { selectedCategory ->
             if (this.selectedCategory == selectedCategory) {
+
                 // Deseleziona la categoria
                 this.selectedCategory = null
+
                 // Aggiorna la RecyclerView dei prodotti con tutti i prodotti
                 prodottiAdapter.updateData(fullProductList)
             } else {
                 // Seleziona la nuova categoria
                 this.selectedCategory = selectedCategory
+
                 // Filtra e aggiorna la RecyclerView dei prodotti
                 filterProductsByCategory(selectedCategory)
             }
@@ -143,6 +148,7 @@ class MainActivity : AppCompatActivity() {
         val cardBtn = findViewById<FloatingActionButton>(R.id.card_btn)
         cardBtn.setOnClickListener {
             val intent = Intent(this, Cart_List::class.java)
+
             // Viene passato cart items alla activity Cart_List
             val userId=user?.id ?: ""
             val cartItems = Cart_List.CartManager.getCartItems(userId)

@@ -24,8 +24,10 @@ class ListaOrdini : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_ordini)
+
         // Ottieni l'ID dell'utente dall'Intent
         val userId = intent.getStringExtra("userId")
+
         // Inizializza la RecyclerView e l'adapter per visualizzare gli ordini
         recyclerView = findViewById(R.id.recyclerviewordini)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -33,6 +35,7 @@ class ListaOrdini : AppCompatActivity() {
         recyclerView.adapter = listaOrdiniAdapter
 
         val ordiniRef = FirebaseDatabase.getInstance().getReference("OrdiniSemplificati")
+
         // Recupera gli ordini dell'utente corrente dal database e aggiorna la RecyclerView
         ordiniRef.orderByChild("userId").equalTo(userId)
             .addValueEventListener(object : ValueEventListener {

@@ -36,10 +36,13 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
         utentiView=findViewById<ImageView>(R.id.utentiView)
         layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
+
         val orderList: MutableList<OrdineS> = mutableListOf()
+
         adapter = Admin_OrdiniAdapter(orderList, this@AdminActivity)
         recyclerView.adapter = adapter
         database = FirebaseDatabase.getInstance()
+
         val reference = database.reference.child("OrdiniSemplificati")
         val reference2 = database.reference.child("PrimoDelGiorno")
         reference2.addValueEventListener(object : ValueEventListener {
@@ -92,7 +95,7 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
      */
     override fun onDeleteClick(ordine: OrdineS) {
         val orderNumber = ordine.numero_ordine
-        // Remove the item from the RecyclerView
+        // Rimuovi l'item dalla RecyclerView
         val position = orderList.indexOf(ordine)
         if (position != -1) {
             orderList.removeAt(position)
@@ -113,7 +116,7 @@ class AdminActivity :  AppCompatActivity(), Admin_OrdiniAdapter.OnDeleteClickLis
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-                    // Handle any errors
+                    // Gestire eventuali errori
                 }
             })
         // Rimuovi tutti i dati dell'ordine specifico dalla sezione "Ordini" del database Firebase

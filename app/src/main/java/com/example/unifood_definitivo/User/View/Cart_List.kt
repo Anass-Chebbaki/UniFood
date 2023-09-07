@@ -13,8 +13,9 @@ import com.example.unifood_definitivo.R
 import com.example.unifood_definitivo.User.Model.*
 import com.google.firebase.database.*
 /**
- * Questa classe gestisce l'attività del carrello degli acquisti dell'utente. Permette agli utenti
- * di visualizzare i prodotti nel carrello, modificarli e completare l'ordine.
+ * Questa classe gestisce l'attività del carrello degli acquisti dell'utente.
+ * Permette agli utenti di visualizzare i prodotti nel carrello,
+ * modificarli e completare l'ordine.
  */
 class Cart_List : AppCompatActivity() {
  private lateinit var cartRecyclerView: RecyclerView
@@ -41,11 +42,12 @@ class Cart_List : AppCompatActivity() {
    cartItems.addAll(intentCartItems)
    cartListAdapter.notifyDataSetChanged()
   } else {
+
    // Verifica se ci sono dati nell'Intent e aggiungi il prodotto al carrello
    val product = intent.getSerializableExtra("product") as Prodotti?
    val quantity = intent.getIntExtra("quantity", 0)
    val imgUri = intent.getStringExtra("imgUri")
-   //val userCart = userCarts.getOrPut(userId) { ArrayList() }
+
    if (product != null) {
     val cartItem = CartProduct(product, quantity, imgUri, product.prezzo?.times(quantity))
     cartItem.total = product.prezzo?.times(quantity)
@@ -182,7 +184,7 @@ class Cart_List : AppCompatActivity() {
    }
 
    override fun onCancelled(error: DatabaseError) {
-    // Handle error if needed
+    // Gestire l'errore se necessario
    }
   }
 

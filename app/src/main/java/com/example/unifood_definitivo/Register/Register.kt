@@ -55,6 +55,7 @@ class SignupActivity : AppCompatActivity() {
 
             if (name.isEmpty() || surname.isEmpty() || email.isEmpty() ||
                 initialBalance.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+
                 // Mostra un messaggio di errore se almeno un campo è vuoto
                 Toast.makeText(this, "Compila tutti i campi prima di procedere", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener

@@ -24,26 +24,24 @@
             val ordine = orderList[position]
 
             // Popola le viste nel layout dell'elemento con i dati da ordine
+
             holder.numeroOrdineTextView.text = ordine.numero_ordine.toString()
             holder.orarioOrdineTextView.text = ordine.fascia_oraria
             holder.listaProdottiTextView.text = ordine.nomiProdotti.toString()
-            //holder.useridTextView.text="User Id: ${ordine.userId}"
             holder.prezzoTextView.text= ordine.prezzo.toString()
             holder.button.setOnClickListener {
                 onDeleteClickListener.onDeleteClick(ordine)
             }
-            // Aggiungi altre viste per gli altri campi dell'Ordine se necessario
         }
 
         inner class OrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val prezzoTextView:TextView=itemView.findViewById(R.id.total)
-            //val useridTextView:TextView=itemView.findViewById(R.id.useridView)
             val numeroOrdineTextView: TextView = itemView.findViewById(R.id.idUtente)
             val orarioOrdineTextView: TextView = itemView.findViewById(R.id.Orario_ordine)
             val listaProdottiTextView: TextView = itemView.findViewById(R.id.userName)
             val button:TextView =itemView.findViewById(R.id.cancellautente)
 
-            // Inizializza le altre viste del layout dell'elemento
+            // Possibilità di inizializzare le altre viste del layout dell'elemento
         }
         /**
          *  Questa funzione restituisce il numero di elementi nella lista degli ordini.

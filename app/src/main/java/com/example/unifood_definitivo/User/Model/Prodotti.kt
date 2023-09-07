@@ -3,7 +3,8 @@ package com.example.unifood_definitivo.User.Model
 import android.net.Uri
 import java.io.Serializable
 /**
-* Classe che rappredenta un prodotto con tutte le sue informazioni
+* Classe che rappredenta un prodotto con tutte le sue informazioni che verranno poi
+ * ripescate dal DB
 */
 data class Prodotti(
 

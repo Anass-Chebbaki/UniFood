@@ -32,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
         // Inizializza le view e il riferimento al database Firebase
         emailEditText = findViewById(R.id.login_email)
         passwordEditText = findViewById(R.id.login_password)
@@ -39,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
         signupText = findViewById(R.id.signuptext)
         database = FirebaseDatabase.getInstance("https://unifood-89f3d-default-rtdb.europe-west1.firebasedatabase.app/")
             .getReference("Utenti")
+
         // Gestisce il click sul pulsante di accesso
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString()
